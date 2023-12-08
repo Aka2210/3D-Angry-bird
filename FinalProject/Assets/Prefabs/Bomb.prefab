@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerForce: 0.5
   explosionRadius: 3
-  explosionForce: 500
+  explosionForce: 10000
   particles: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   animator: {fileID: 5513129999127856846}
 --- !u!95 &5513129999127856846

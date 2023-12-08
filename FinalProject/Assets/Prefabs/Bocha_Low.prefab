@@ -436,8 +436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerForce: 0.5
   explosionRadius: 5
-  explosionForce: 1000
+  explosionForce: 20000
   particles: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  animator: {fileID: 0}
 --- !u!1 &7505531088010246919
 GameObject:
   m_ObjectHideFlags: 0
