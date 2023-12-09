@@ -16,14 +16,15 @@ public class Pig : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_currentHealth > 0)
-        {
-            _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
-        }
+        
         
     }
     private void OnCollisionEnter(Collision collision)
     {
-        _currentHealth -= collision.relativeVelocity.magnitude / 100;
+        _currentHealth -= collision.relativeVelocity.magnitude;
+        if (_currentHealth > 0)
+        {
+            _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+        }
     }
 }

@@ -5,29 +5,29 @@ using UnityEngine;
 public class ChooseDetect : MonoBehaviour
 {
     Camera cam;
-    //§iª¾ª±®a«ö¤UE¥i¥H¾ß¨úÂû³JªºUI
+    //ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½UEï¿½iï¿½Hï¿½ß¨ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½UI
     [SerializeField] GameObject PickUpUI;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject Egg;
     void Start()
     {
-        // Àò¨ú¬Û¾÷¸ê®Æ
+        // ï¿½ï¿½ï¿½ï¿½Û¾ï¿½ï¿½ï¿½ï¿½
         cam = Camera.main;
-        //ÁôÂÃ¸ÓUI
+        //ï¿½ï¿½ï¿½Ã¸ï¿½UI
         PickUpUI.SetActive(false);
     }
 
     void Update()
     {
-        // ±qµ¹©wªºpoint³Ð«Ø®g½u
+        // ï¿½qï¿½ï¿½ï¿½wï¿½ï¿½pointï¿½Ð«Ø®gï¿½u
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        //®g½u¸IÄ²¨ì¬Æ»ò
+        //ï¿½gï¿½uï¿½IÄ²ï¿½ï¿½Æ»ï¿½
         RaycastHit hit;
         
-        // ¶i¦æ®g½uª«²z­pºâ, ray¬°®g½u, hit¥Î¨Ó½Õ¥Î®g½u¸ê®Æ, 3f¬°®g½uªø«×, layerMask¬°¹LÂo¾¹, ¥u¦³³Q¸I¨ìªºª«¥ólayer = layerMask®É¤~·|¶i¤JIf
+        // ï¿½iï¿½ï¿½gï¿½uï¿½ï¿½ï¿½zï¿½pï¿½ï¿½, rayï¿½ï¿½ï¿½gï¿½u, hitï¿½Î¨Ó½Õ¥Î®gï¿½uï¿½ï¿½ï¿½, 3fï¿½ï¿½ï¿½gï¿½uï¿½ï¿½ï¿½ï¿½, layerMaskï¿½ï¿½ï¿½Lï¿½oï¿½ï¿½, ï¿½uï¿½ï¿½ï¿½Qï¿½Iï¿½ìªºï¿½ï¿½ï¿½ï¿½layer = layerMaskï¿½É¤~ï¿½|ï¿½iï¿½JIf
         if (Physics.Raycast(ray, out hit, 3f, layerMask))
         {
-            //Åã¥Ü¸ÓUI
+            //ï¿½ï¿½Ü¸ï¿½UI
             PickUpUI.SetActive(true);
             if(Input.GetKeyDown(KeyCode.E)) 
             {
@@ -36,11 +36,11 @@ public class ChooseDetect : MonoBehaviour
         }
         else
         {
-            //ÁôÂÃ¸ÓUI
+            //ï¿½ï¿½ï¿½Ã¸ï¿½UI
             PickUpUI.SetActive(false);
         }
 
-        // ¦b³õ´ºµø¹Ï¤¤Åã¥Ü®g½u¡A¤è«Kdebug«á´Á¥i§R
+        // ï¿½bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¤ï¿½ï¿½ï¿½Ü®gï¿½uï¿½Aï¿½ï¿½Kdebugï¿½ï¿½ï¿½ï¿½iï¿½R
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
     }
 }
