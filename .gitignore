@@ -77,22 +77,16 @@ UserSettings/
 # Others #
 # =============== #
 *.pidb
-*.pidb.meta
 *.pdb
-*.pdb.meta
 *.mdb
-*.mdb.meta
 *.apk
 *.aab
 *.unitypackage
 *.DS_Store
 *.AppleDouble
 *.LSOverride
-*.Meta
 *.mask
-*.mask.meta
 *.orig
-*.orig.meta
 *.precompiled*
 *.TMP
 *.tmp
@@ -102,11 +96,8 @@ UserSettings/
 *.swa
 *.swo
 *.pidb
-*.pidb.meta
 *.pdb
-*.pdb.meta
 *.mdb
-*.mdb.meta
 *.userprefs
 *.csproj
 *.sln
