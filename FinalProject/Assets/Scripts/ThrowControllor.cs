@@ -60,7 +60,7 @@ public class ThrowControllor : MonoBehaviour
         else
         {
             ThrowPowerX = 30;
-            ThrowPowerY = 50;
+            ThrowPowerY = 30;
         }
 
         Vector3 temp = new Vector3(egg.GetComponent<Transform>().position.x, egg.GetComponent<Transform>().position.y, egg.GetComponent<Transform>().position.z);

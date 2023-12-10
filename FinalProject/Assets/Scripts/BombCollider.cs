@@ -25,7 +25,7 @@ public class BombCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //¦pªG¸I¼²ªº¤O>=Ä²µoTNT©Ò»Ýªº¤O«h¶i¦æTNTÃz¬µµ{¦¡½X
+        //ï¿½pï¿½Gï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½O>=Ä²ï¿½oTNTï¿½Ò»Ýªï¿½ï¿½Oï¿½hï¿½iï¿½ï¿½TNTï¿½zï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½X
         if (collision.relativeVelocity.magnitude >= triggerForce)
         {
             StartCoroutine(DelayedExplosion(collision, 2.0f));
@@ -34,19 +34,19 @@ public class BombCollider : MonoBehaviour
 
     IEnumerator DelayedExplosion(Collision collision, float delay)
     {
-        //°õ¦æ°ò¥»¾Þ§@
+        //ï¿½ï¿½ï¿½ï¿½ò¥»¾Þ§@
         animator.SetBool("Collider", true);
 
-        //µ¥«Ýdelay¬í
+        //ï¿½ï¿½ï¿½ï¿½delayï¿½ï¿½
         yield return new WaitForSeconds(delay);
 
-        //Ãz¬µ
+        //ï¿½zï¿½ï¿½
         Explosion(collision);
     }
 
     public void Explosion(Collision collision)
     {
-        //§Q¥ÎPhysics§ì¨ú¥Htransform.position¬°¤¤¤ß, explosionRadius¬°¥b®|ªº¾ò¶ê½d³ò¤º©Ò¦³ªºª«¥ó
+        //ï¿½Qï¿½ï¿½Physicsï¿½ï¿½ï¿½ï¿½Htransform.positionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, explosionRadiusï¿½ï¿½ï¿½bï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½ò¤º©Ò¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var surroundingObject = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (var obj in surroundingObject)
@@ -54,16 +54,16 @@ public class BombCollider : MonoBehaviour
             var rb = obj.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
-            //µ¹¤©©Ò¦³ªþªñª«¥ó¤@Ãz¯}¤O(¼ÒÀÀÃz¬µªº¤O)¡A°Ñ¼Æ¤À§O¬°(Ãz¬µ¤O¶q, Ãz¬µ¤¤¤ßÂI, Ãz¬µ¥b®|)
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ò¦ï¿½ï¿½ï¿½ï¿½ñª«¥ï¿½@ï¿½zï¿½}ï¿½O(ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½O)ï¿½Aï¿½Ñ¼Æ¤ï¿½ï¿½Oï¿½ï¿½(ï¿½zï¿½ï¿½ï¿½Oï¿½q, ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½I, ï¿½zï¿½ï¿½ï¿½bï¿½|)
             rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
-        //³Ð«Ø¦¹ª«¥óÃz¬µ²É¤l®ÄªG
+        //ï¿½Ð«Ø¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½É¤lï¿½ÄªG
         GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
 
-        //§R°£TNTª«¥ó(¨Ï¥ÎgameObject³s¦P¤÷¡B¤lª«¥ó¤@°_§R°£)
+        //ï¿½Rï¿½ï¿½TNTï¿½ï¿½ï¿½ï¿½(ï¿½Ï¥ï¿½gameObjectï¿½sï¿½Pï¿½ï¿½ï¿½Bï¿½lï¿½ï¿½ï¿½ï¿½@ï¿½_ï¿½Rï¿½ï¿½)
         Destroy(gameObject);
-        //¨â¬í«á§R°£Ãz¬µ¥Îªº²É¤l®ÄªG¡AÁ×§K°ïÅ|¤Ó¦h¾É­P¥d¹y
+        //ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½zï¿½ï¿½ï¿½Îªï¿½ï¿½É¤lï¿½ÄªGï¿½Aï¿½×§Kï¿½ï¿½ï¿½|ï¿½Ó¦hï¿½É­Pï¿½dï¿½y
         Destroy(explosive, 2);
     }
 }
