@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Ä~©Ó¦ÜBombCollider(±q¨¤¦â¨ºÃäÄ~©ÓÃz¯}¨ç¦¡¨ÓÀ³¥Î)
+//ï¿½~ï¿½Ó¦ï¿½BombCollider(ï¿½qï¿½ï¿½ï¿½â¨ºï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½zï¿½}ï¿½ç¦¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 public class TNTCollider : BombCollider
 {
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class TNTCollider : BombCollider
 
     public void OnCollisionEnter(Collision collision)
     {
-        //¦pªG¸I¼²ªº¤O>=Ä²µoTNT©Ò»Ýªº¤O«h¶i¦æTNTÃz¬µµ{¦¡½X
+        //ï¿½pï¿½Gï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½O>=Ä²ï¿½oTNTï¿½Ò»Ýªï¿½ï¿½Oï¿½hï¿½iï¿½ï¿½TNTï¿½zï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½X
         if (collision.relativeVelocity.magnitude >= triggerForce)
         {
             Explosion();

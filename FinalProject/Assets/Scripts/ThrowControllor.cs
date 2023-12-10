@@ -71,7 +71,7 @@ public class ThrowControllor : MonoBehaviour
         {
             Destroy(clonedObject);
         }
-        clonedObject = Instantiate(ThrowingObject, temp, Quaternion.identity);
+        clonedObject = Instantiate(ThrowingObject, temp, ThrowingOrient.transform.rotation);
 
         Rigidbody rb = clonedObject.GetComponent<Rigidbody>();
         rb.AddForce(ThrowingOrient.forward * ThrowPowerX + ThrowingOrient.up * ThrowPowerY, ForceMode.Impulse);
