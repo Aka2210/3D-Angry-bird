@@ -22,7 +22,7 @@ public class TNTCollider : BombCollider
         //如果碰撞的力>=觸發TNT所需的力則進行TNT爆炸程式碼
         if (collision.relativeVelocity.magnitude >= triggerForce)
         {
-            Explosion(collision);
+            Explosion();
         }
     }
 }

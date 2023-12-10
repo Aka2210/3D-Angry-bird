@@ -10,6 +10,7 @@ public class ThrowControllor : MonoBehaviour
     [SerializeField] GameObject egg;
     [SerializeField] GameObject ThrowingObject;
     [SerializeField] Transform ThrowingOrient;
+    [SerializeField] Transform Orient;
     GameObject clonedObject;
 
     bool PowerThrow = false;
@@ -25,20 +26,20 @@ public class ThrowControllor : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             animator.SetBool("Throw", true);
-        }
-        else if(Input.GetMouseButtonUp(0)) 
-        {
-            animator.SetBool("Throw", false);
+            Vector3 ThrowRotate = ThrowingOrient.rotation.eulerAngles;
+            ThrowRotate.x = 0;
+
+            Orient.rotation = Quaternion.Euler(ThrowRotate);
+            if(PowerThrow)
+                StartCoroutine(CloseThrow(3.24f));
+            else
+                StartCoroutine(CloseThrow(2f));
         }
 
         //較遠的投擲為按住左alt+左鍵
         if(Input.GetKey(KeyCode.LeftAlt))
         {
             PowerThrow = true;
-        }
-        else if(Input.GetKeyUp(KeyCode.LeftAlt))
-        {
-            PowerThrow = false;
         }
 
         animator.SetBool("PowerThrow", PowerThrow);
@@ -55,7 +56,7 @@ public class ThrowControllor : MonoBehaviour
         if(PowerThrow)
         {
             ThrowPowerX = 50;
-            ThrowPowerY = 80;
+            ThrowPowerY = 50;
         }
         else
         {
@@ -74,5 +75,12 @@ public class ThrowControllor : MonoBehaviour
 
         Rigidbody rb = clonedObject.GetComponent<Rigidbody>();
         rb.AddForce(ThrowingOrient.forward * ThrowPowerX + ThrowingOrient.up * ThrowPowerY, ForceMode.Impulse);
+    }
+
+    IEnumerator CloseThrow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        animator.SetBool("Throw", false);
+        PowerThrow = false;
     }
 }

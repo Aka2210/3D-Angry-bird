@@ -25,7 +25,7 @@ public class ChooseDetect : MonoBehaviour
         RaycastHit hit;
         
         // �i��g�u���z�p��, ray���g�u, hit�Ψӽեήg�u���, 3f���g�u����, layerMask���L�o��, �u���Q�I�쪺����layer = layerMask�ɤ~�|�i�JIf
-        if (Physics.Raycast(ray, out hit, 3f, layerMask))
+        if (Physics.Raycast(ray, out hit, 7f, layerMask))
         {
             //��ܸ�UI
             PickUpUI.SetActive(true);

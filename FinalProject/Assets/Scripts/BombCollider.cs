@@ -20,50 +20,42 @@ public class BombCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.R)) 
+        {
+            Explosion();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        //�p�G�I�����O>=Ĳ�oTNT�һݪ��O�h�i��TNT�z���{���X
-        if (collision.relativeVelocity.magnitude >= triggerForce)
+        //若碰撞到的物件不是玩家，則兩秒後炸彈消失
+        if (collision.collider.name != "PlayerArmature")
         {
-            StartCoroutine(DelayedExplosion(collision, 2.0f));
+            Destroy(gameObject, 2.0f);
         }
     }
 
-    IEnumerator DelayedExplosion(Collision collision, float delay)
+    public void Explosion()
     {
-        //����򥻾ާ@
-        animator.SetBool("Collider", true);
-
-        //����delay��
-        yield return new WaitForSeconds(delay);
-
-        //�z��
-        Explosion(collision);
-    }
-
-    public void Explosion(Collision collision)
-    {
-        //�Q��Physics����Htransform.position������, explosionRadius���b�|�����d�򤺩Ҧ�������
+        //抓取圓形範圍內所有物件
         var surroundingObject = Physics.OverlapSphere(transform.position, explosionRadius);
 
+        //遍歷物件，如果物件有Rigidbody就施加爆炸給它
         foreach (var obj in surroundingObject)
         {
             var rb = obj.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
-            //�����Ҧ����񪫥�@�z�}�O(�����z�����O)�A�ѼƤ��O��(�z���O�q, �z�������I, �z���b�|)
+            //參數為爆炸總力, 當前位置, 爆炸半徑, 因此會自動計算此物體距離中心的距離進行不同位置爆炸力不同的計算;
             rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
-        //�Ыئ������z���ɤl�ĪG
+        //生成爆炸特效
         GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
 
-        //�R��TNT����(�ϥ�gameObject�s�P���B�l����@�_�R��)
+        //刪除炸彈
         Destroy(gameObject);
-        //����R���z���Ϊ��ɤl�ĪG�A�קK���|�Ӧh�ɭP�d�y
+        //兩秒後刪除特效
         Destroy(explosive, 2);
     }
 }
