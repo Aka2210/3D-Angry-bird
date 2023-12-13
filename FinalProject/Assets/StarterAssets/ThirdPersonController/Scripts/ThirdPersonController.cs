@@ -154,14 +154,23 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = TryGetComponent(out _animator); 
 
-            JumpAndGravity();
             GroundedCheck();
-            if(!_animator.GetBool("Throw"))
+            if (!_animator.GetBool("Throw") && gameObject.GetComponent<ThrowControllor>().ThrowCamera.Priority != 100)
+            {
+                JumpAndGravity();
                 Move();
+            }
+            else
+            {
+                _animator.SetBool(_animIDFreeFall, false);
+                _animator.SetFloat(_animIDSpeed, 0);
+                _animator.SetBool(_animIDJump, false);
+            }
         }
 
+        //LateUpdate在所有Update結束後被使用(每一幀末尾)，通常用來使相機跟隨玩家
         private void LateUpdate()
         {
             CameraRotation();
@@ -169,6 +178,7 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
+            //將用來控制動畫進行程度的變數用Hash的方式轉換成一串ID
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
             _animIDJump = Animator.StringToHash("Jump");
@@ -193,22 +203,26 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
+            //如果正在投擲，將視角鎖定
+            LockCameraPosition = _animator.GetBool("Throw") ? true : false;
 
-            // if there is an input and camera position is not fixed
+            // 前者將輸入的量值開根號，如果太小則不改變視角旋轉參數，中間確保此相機未被鎖定
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                //Don't multiply mouse input by Time.deltaTime;
+                //IsCurrentDeviceMouse檢測當前使用是否為滑鼠，以此來決定deltaTimeMultiplier，因為如果是滑鼠，不需要針對畫面更新乘以deltaTime
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                //利用input抓取滑鼠左右、上下移動的值，兩者皆介於-1~1之間。
+                if (gameObject.GetComponent<ThrowControllor>().ThrowCamera.Priority != 100)
+                    _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
-            // clamp our rotations so our values are limited 360 degrees
+            // 限制最大旋轉角度
             _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
-            // Cinemachine will follow this target
+            // 調整相機旋轉
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }

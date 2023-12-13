@@ -28,12 +28,9 @@ public class BombCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //若碰撞到的物件不是玩家，則兩秒後炸彈消失
-        if (collision.collider.name != "PlayerArmature")
-        {
-            animator.SetBool("Collider", true);
-            Destroy(gameObject, 2.0f);
-        }
+        //若碰撞到物件則三秒後炸彈消失
+        animator.SetBool("Collider", true);
+        Destroy(gameObject, 3.0f);
     }
 
     public void Explosion()

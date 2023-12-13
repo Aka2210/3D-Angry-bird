@@ -82,7 +82,12 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: pig(Clone)
+      parentName: 
+      position: {x: -0.5742688, y: 0.23086208, z: -0.54695547}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: -0.31622958, y: -0.31622958, z: -0.31622958}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
