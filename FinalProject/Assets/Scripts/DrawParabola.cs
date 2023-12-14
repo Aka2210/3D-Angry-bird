@@ -56,6 +56,7 @@ public class DrawParabola : MonoBehaviour
                 initialVelocit.x * t
             );
 
+            //使point*orient旋轉讓y、z軸方向與當前orient的y、z軸方向相同，然後+上position視為以orient.position作為起點，最後+上offset，修正投擲誤差
             points[i] = orient.rotation * point + orient.position + offset;
         }
 

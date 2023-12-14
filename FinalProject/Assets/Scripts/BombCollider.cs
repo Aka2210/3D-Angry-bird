@@ -24,6 +24,11 @@ public class BombCollider : MonoBehaviour
         {
             Explosion();
         }
+
+        if (GetComponent<Transform>().position.y <= -2)
+        {
+            Destroy(gameObject, 1f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

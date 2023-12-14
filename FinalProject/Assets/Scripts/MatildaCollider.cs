@@ -24,6 +24,11 @@ public class MatildaCollider : MonoBehaviour
             LayEgg();
             isLayEgg = true;
         }
+
+        if (GetComponent<Transform>().position.y <= -2)
+        {
+            Destroy(gameObject, 1f);
+        }
     }
 
     private void LayEgg()

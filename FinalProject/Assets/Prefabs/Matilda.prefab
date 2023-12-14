@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6170ce85fb1b88c4b9604e5159d5ec26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  birdCamera: {fileID: 6195723710454028438, guid: 116e033cf7e64cb40a1728ad534d9021, type: 3}
   eggBomb: {fileID: 5712395104354971398, guid: 10ce4a6b1e6666e449612c3716ec683f, type: 3}
   ThrowingObject: {fileID: 4949617599113544638}
   ThrowingOrient: {fileID: 5763273093533341956}

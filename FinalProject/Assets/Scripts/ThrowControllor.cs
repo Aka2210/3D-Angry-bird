@@ -2,6 +2,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -14,13 +15,15 @@ public class ThrowControllor : MonoBehaviour
     public GameObject ThrowingObject;
     [SerializeField] Transform ThrowingOrient;
     [SerializeField] Transform Orient;
-    GameObject clonedObject;
+    public GameObject clonedObject;
     public float ThrowOffset = 0.1f;
     public CinemachineVirtualCamera ThrowCamera;
     public float ThrowPowerX = 30, ThrowPowerY = 30;
 
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
+
+    public GameObject birdCamera;
 
     void Start()
     {
@@ -29,17 +32,23 @@ public class ThrowControllor : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Q)) 
+        ThrowCameraActive = CinemachineCore.Instance.IsLive(ThrowCamera);
+        if (Input.GetKeyUp(KeyCode.Q)) 
         {
             ThrowCamera.Priority = ThrowCamera.Priority == 100 ? 0 : 100;
-            ThrowCameraActive = ThrowCamera.Priority == 100;
+        }
+
+        if (clonedObject != null)
+        {
+            Vector3 birdCameraPosition = new Vector3(clonedObject.transform.position.x + 10, clonedObject.transform.position.y, clonedObject.transform.position.z);
+            birdCamera.GetComponent<Transform>().position = birdCameraPosition;
         }
     }
     // Update is called once per frame
     void LateUpdate()
     {
         //偵測滑鼠左鍵被按下，0: 左鍵 1: 右鍵 2: 中鍵
-        if(Input.GetMouseButtonDown(0) && !animator.GetBool("Throw") && ThrowCameraActive)
+        if(Input.GetMouseButtonDown(0) && !animator.GetBool("Throw") && ThrowCameraActive && clonedObject == null)
         {
             //動畫開始
             animator.SetBool("Throw", true);
@@ -69,7 +78,7 @@ public class ThrowControllor : MonoBehaviour
             ThrowPowerX = 30;
             ThrowPowerY = 30;
         }
-
+        
         animator.SetBool("PowerThrow", PowerThrow);
     }
 
@@ -86,6 +95,12 @@ public class ThrowControllor : MonoBehaviour
             Destroy(clonedObject);
         }
         clonedObject = Instantiate(ThrowingObject, temp, ThrowingOrient.transform.rotation);
+
+        birdCamera.GetComponent<CinemachineVirtualCamera>().Follow = clonedObject.transform;
+        birdCamera.GetComponent<CinemachineVirtualCamera>().LookAt = clonedObject.transform;
+        birdCamera.GetComponent<CinemachineVirtualCamera>().Priority = 1000;
+        birdCamera.GetComponent<BirdFollowCamera>().cloneObject = clonedObject;
+        birdCamera.GetComponent<BirdFollowCamera>().Throw = true;
 
         //抓取小雞的Rigidbody，用來施加投擲力量
         Rigidbody ThrowObjectRb = clonedObject.GetComponent<Rigidbody>();
