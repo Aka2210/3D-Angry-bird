@@ -12,7 +12,7 @@ public class DrawParabola : MonoBehaviour
     public float timeResolution = 0.01f;
     public float maxTime = 0.5f;
     Rigidbody rb;
-    float ThrowPowerX, ThrowPowerY;
+    float ThrowPowerX, ThrowPowerY, TotalPower;
     public CharacterController character;
     public Transform orient, Player;
 
@@ -22,8 +22,7 @@ public class DrawParabola : MonoBehaviour
         rb = GetComponentInParent<ThrowControllor>().ThrowingObject.GetComponent<Rigidbody>();
         ThrowPowerX = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerX;
         ThrowPowerY = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerY;
-        initialVelocit.x = ThrowPowerX / rb.mass;
-        initialVelocit.y = ThrowPowerY / rb.mass;
+        TotalPower = Mathf.Sqrt(ThrowPowerX * ThrowPowerX + ThrowPowerY * ThrowPowerY);
     }
 
     private void LateUpdate()
@@ -32,8 +31,13 @@ public class DrawParabola : MonoBehaviour
         {
             ThrowPowerX = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerX;
             ThrowPowerY = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerY;
-            initialVelocit.x = ThrowPowerX / rb.mass;
-            initialVelocit.y = ThrowPowerY / rb.mass;
+            TotalPower = Mathf.Sqrt(ThrowPowerX * ThrowPowerX + ThrowPowerY * ThrowPowerY);
+            Vector3 euler = orient.rotation.eulerAngles;
+            float angleInDegrees = 45 - euler.x;
+            float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+            float cosValue = Mathf.Cos(angleInRadians), sinValue = Mathf.Sin(angleInRadians);
+            initialVelocit.x = (TotalPower * cosValue) / rb.mass;
+            initialVelocit.y = (TotalPower * sinValue) / rb.mass;
             Draw();
         }
         else
@@ -56,8 +60,7 @@ public class DrawParabola : MonoBehaviour
                 initialVelocit.x * t
             );
 
-            //使point*orient旋轉讓y、z軸方向與當前orient的y、z軸方向相同，然後+上position視為以orient.position作為起點，最後+上offset，修正投擲誤差
-            points[i] = orient.rotation * point + orient.position + offset;
+            points[i] = point + orient.position + offset;
         }
 
         lineRenderer.positionCount = numPoints;

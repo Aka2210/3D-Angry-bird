@@ -2349,7 +2349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVelocit: {x: 0, y: 0}
   timeResolution: 0.01
-  maxTime: 0.5
+  maxTime: 3
   character: {fileID: 1512423361}
   orient: {fileID: 1623205597}
   Player: {fileID: 1512423349}
