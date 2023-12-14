@@ -2353,6 +2353,7 @@ MonoBehaviour:
   character: {fileID: 1512423361}
   orient: {fileID: 1623205597}
   Player: {fileID: 1512423349}
+  animator: {fileID: 1512423355}
 --- !u!120 &435975076
 LineRenderer:
   serializedVersion: 2

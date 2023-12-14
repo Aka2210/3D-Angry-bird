@@ -15,6 +15,7 @@ public class DrawParabola : MonoBehaviour
     float ThrowPowerX, ThrowPowerY, TotalPower;
     public CharacterController character;
     public Transform orient, Player;
+    public Animator animator;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class DrawParabola : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (GetComponent<CinemachineVirtualCamera>().Priority == 100)
+        if (GetComponent<CinemachineVirtualCamera>().Priority == 100 && !animator.GetBool("Throw") && GetComponentInParent<ThrowControllor>().clonedObject == null)
         {
             ThrowPowerX = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerX;
             ThrowPowerY = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerY;
@@ -49,7 +50,12 @@ public class DrawParabola : MonoBehaviour
     void Draw()
     {
         int numPoints = Mathf.FloorToInt(maxTime / timeResolution);
-        Vector3 offset = new Vector3(GetComponentInParent<Animator>().GetBool("PowerThrow") ? (float)0.5 : 0, character.height - orient.position.y, 0);
+        Vector3 euler = Player.rotation.eulerAngles;
+        float angleInDegrees = euler.y;
+        float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+        float cosValue = Mathf.Cos(angleInRadians), sinValue = Mathf.Sin(angleInRadians);
+
+        Vector3 offset = new Vector3(0.5f * cosValue, character.height, -0.5f * sinValue);
         Vector3[] points = new Vector3[numPoints];
         for (int i = 0; i < numPoints; i++)
         {
@@ -60,7 +66,7 @@ public class DrawParabola : MonoBehaviour
                 initialVelocit.x * t
             );
 
-            points[i] = point + orient.position + offset;
+            points[i] = Player.rotation * point + Player.position + offset;
         }
 
         lineRenderer.positionCount = numPoints;
