@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2036,6 +2036,37 @@ PrefabInstance:
       addedObject: {fileID: 852642417}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 170b5c8bc206e434bbabb0dfb4c448a2, type: 3}
+--- !u!1 &307407874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307407875}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307407875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307407874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.261, y: 1.716, z: 0.293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &318954424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2272,6 +2303,7 @@ GameObject:
   - component: {fileID: 435975074}
   - component: {fileID: 435975073}
   - component: {fileID: 435975075}
+  - component: {fileID: 435975077}
   - component: {fileID: 435975076}
   m_Layer: 0
   m_Name: ThrowCamera
@@ -2328,7 +2360,7 @@ Transform:
   m_GameObject: {fileID: 435975072}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 14.877, y: 1.879, z: 1.91}
+  m_LocalPosition: {x: 14.88, y: 1.79, z: 4.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2347,14 +2379,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e0ef19660b2e84aba3db0406bcc35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialVelocit: {x: 0, y: 0}
-  timeResolution: 0.01
-  maxTime: 3
-  character: {fileID: 1512423361}
-  orient: {fileID: 1623205597}
-  Player: {fileID: 1512423349}
   animator: {fileID: 1512423355}
---- !u!120 &435975076
+  _projection: {fileID: 435975076}
+--- !u!114 &435975076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435975072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af49182d16677744a4ce539d4971acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _line: {fileID: 435975077}
+  _maxPhysicsFrameIterations: 100
+  _obstaclesParent: {fileID: 1873987963}
+  _animator: {fileID: 1512423355}
+--- !u!120 &435975077
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -2375,7 +2418,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5629084884208175553, guid: fce3bf5a5b603db45ab0048fb6ab44df, type: 3}
+  - {fileID: 2100000, guid: fa9f2a404c3e1c643ad92b9c34b013c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2406,8 +2449,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.023937225
+        time: 0.08114624
+        value: 0.25789452
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2451,7 +2494,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 0.3, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
@@ -2855,7 +2898,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1873987963}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &779600398 stripped
 GameObject:
@@ -4272,11 +4315,6 @@ MonoBehaviour:
   ThrowPowerX: 30
   ThrowPowerY: 30
   birdCamera: {fileID: 1500047081}
---- !u!143 &1512423361 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 4416926081852918491, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
-  m_PrefabInstance: {fileID: 682342793}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1594308914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8979788253985264244, guid: 5b7ae8c9f8c2a1b40bc2d5e0c79efd6f, type: 3}
@@ -4840,7 +4878,6 @@ Transform:
   - {fileID: 1741876316}
   - {fileID: 1347161089}
   - {fileID: 481460849}
-  - {fileID: 705507995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1940427551 stripped
@@ -5473,6 +5510,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 705507995}
   - {fileID: 1873987963}
   - {fileID: 4200675520978085153}
   - {fileID: 856505148141140184}
@@ -5488,3 +5526,4 @@ SceneRoots:
   - {fileID: 2080412876}
   - {fileID: 8078716920726913440}
   - {fileID: 1500047084}
+  - {fileID: 307407875}

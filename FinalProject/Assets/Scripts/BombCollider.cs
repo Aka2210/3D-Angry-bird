@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class BombCollider : MonoBehaviour
+public class BombCollider : BirdCommonVar
 {
     [SerializeField] public float triggerForce;
     [SerializeField] float explosionRadius;
@@ -34,6 +34,7 @@ public class BombCollider : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //若碰撞到物件則三秒後炸彈消失
+        HasCollider = true;
         animator.SetBool("Collider", true);
         Destroy(gameObject, 3.0f);
     }

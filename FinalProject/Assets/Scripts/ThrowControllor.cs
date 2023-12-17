@@ -11,9 +11,9 @@ public class ThrowControllor : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Animator animator;
-    [SerializeField] GameObject egg;
+    [SerializeField] public GameObject egg;
     public GameObject ThrowingObject;
-    [SerializeField] Transform ThrowingOrient;
+    [SerializeField] public Transform ThrowingOrient;
     [SerializeField] Transform Orient;
     public GameObject clonedObject;
     public float ThrowOffset = 0.1f;
@@ -35,6 +35,9 @@ public class ThrowControllor : MonoBehaviour
         ThrowCameraActive = CinemachineCore.Instance.IsLive(ThrowCamera);
         if (Input.GetKeyUp(KeyCode.Q)) 
         {
+            Transform transform = ThrowingOrient.transform;
+            Quaternion newRotation = Quaternion.Euler(0f, transform.eulerAngles.y, transform.eulerAngles.z);
+            Orient.rotation = newRotation;
             ThrowCamera.Priority = ThrowCamera.Priority == 100 ? 0 : 100;
         }
 

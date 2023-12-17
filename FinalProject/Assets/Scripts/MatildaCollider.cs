@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatildaCollider : MonoBehaviour
+public class MatildaCollider : BirdCommonVar
 {
     [SerializeField] GameObject eggBomb;
     [SerializeField] GameObject ThrowingObject;
     [SerializeField] Transform ThrowingOrient;
     [SerializeField] Rigidbody rb;
     bool isLayEgg = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,7 @@ public class MatildaCollider : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //丟出後若碰撞到物件則關閉下蛋功能並在三秒後刪除小雞
+        HasCollider = true;
         isLayEgg = true;
         Destroy(gameObject, 3.0f);
     }
