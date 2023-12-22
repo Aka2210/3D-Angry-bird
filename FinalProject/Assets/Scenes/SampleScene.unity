@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1512423355}
   egg: {fileID: 512317399}
-  ThrowingObject: {fileID: 2079072757242878977, guid: 93344e6530fa41b478713090b0e0f3c7, type: 3}
+  ThrowingObject: {fileID: 2829267127450417045, guid: adaca426fc1b2f04a8aaec9d19ded4e6, type: 3}
   ThrowingOrient: {fileID: 1623205597}
   Orient: {fileID: 1512423349}
   clonedObject: {fileID: 0}
