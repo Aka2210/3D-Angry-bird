@@ -7,7 +7,6 @@ using UnityEngine;
 public class DrawParabola : MonoBehaviour
 {
     LineRenderer lineRenderer;
-    Rigidbody rb;
     float ThrowPowerX, ThrowPowerY;
     public Animator animator;
     [SerializeField] private Projection _projection;
