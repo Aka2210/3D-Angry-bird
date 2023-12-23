@@ -19,20 +19,8 @@ public class BirdFollowCamera : MonoBehaviour
     {
         if(cloneObject == null && Throw)
         {
-            PrepareToCloseCamera(2f);
+            birdCamera.Priority = 0;
             Throw = false;
         }
-    }
-
-    public void PrepareToCloseCamera(float delay)
-    {
-        StartCoroutine(CloseCamera(delay));
-    }
-
-    IEnumerator CloseCamera(float delay)
-    {
-        //delay秒後執行下面的程式
-        yield return new WaitForSeconds(delay);
-        birdCamera.Priority = 0;
     }
 }

@@ -57,8 +57,9 @@ public class BombCollider : BirdCommonVar
         //生成爆炸特效
         GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
 
+        gameObject.active = false;
         //刪除炸彈
-        Destroy(gameObject);
+        Destroy(gameObject, 3.0f);
         //兩秒後刪除特效
         Destroy(explosive, 2);
     }

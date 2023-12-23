@@ -1,10 +1,5 @@
 ﻿using Cinemachine;
-using StarterAssets;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ThrowControllor : MonoBehaviour
@@ -117,5 +112,6 @@ public class ThrowControllor : MonoBehaviour
         //關閉投擲動畫，使角色位置、視角可以移動
         animator.SetBool("Throw", false);
         PowerThrow = false;
+        egg.SetActive(true);
     }
 }
