@@ -18,6 +18,8 @@ public class ChuckCollider : BirdCommonVar
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+
         //觸發技能:先停止前進進行旋轉再施加力量
         if (Input.GetKeyDown(KeyCode.R) && isEnhance == false)
         {
@@ -26,11 +28,6 @@ public class ChuckCollider : BirdCommonVar
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             StartCoroutine(EnhanceAndThrow());
-        }
-        //掉下去就掰掰
-        if (GetComponent<Transform>().position.y <= -2)
-        {
-            Destroy(gameObject, 1f);
         }
     }
     IEnumerator EnhanceAndThrow()

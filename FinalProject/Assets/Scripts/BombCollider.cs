@@ -20,14 +20,11 @@ public class BombCollider : BirdCommonVar
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+
         if(Input.GetKeyDown(KeyCode.R)) 
         {
             Explosion();
-        }
-
-        if (GetComponent<Transform>().position.y <= -2)
-        {
-            Destroy(gameObject, 1f);
         }
     }
 

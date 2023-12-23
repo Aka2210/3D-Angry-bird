@@ -19,16 +19,13 @@ public class MatildaCollider : BirdCommonVar
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+
         //如果R被按下而且尚未使用過小雞技能則執行小雞技能並標記為已使用過技能
         if (Input.GetKeyDown(KeyCode.R) && isLayEgg == false)
         {
             LayEgg();
             isLayEgg = true;
-        }
-
-        if (GetComponent<Transform>().position.y <= -2)
-        {
-            Destroy(gameObject, 1f);
         }
     }
 

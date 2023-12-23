@@ -12,8 +12,11 @@ public class BirdCommonVar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if (GetComponent<Transform>().position.y <= -2)
+        {
+            Destroy(gameObject, 1f);
+        }
     }
 }
