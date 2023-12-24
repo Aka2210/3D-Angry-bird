@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Linq;
 
 
 public class SceneSwitcher : MonoBehaviour
@@ -47,7 +46,7 @@ public class SceneSwitcher : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AudioSource not assigned!");
+            //Debug.LogError("AudioSource not assigned!");
         }
         Transform helpButtonTransform = GetComponentInChildren<Transform>().Find("BackGround_Help");
 
@@ -56,19 +55,19 @@ public class SceneSwitcher : MonoBehaviour
            
             if (helpButtonTransform.gameObject != null)
             {
-                Debug.Log("Find helpButtonTransform");
-                helpButtonTransform.gameObject.transform.position = new Vector3(400f, 400f, 0f);
+                //Debug.Log("Find helpButtonTransform");
+                //helpButtonTransform.gameObject.transform.position = new Vector3(400f, 400f, 0f);
                 helpButtonTransform.gameObject.SetActive(true);
 
             }
             else
             {
-                Debug.LogError("helpButtonTransform is null");
+                //Debug.LogError("helpButtonTransform is null");
             }
         }
         else
         {
-            Debug.LogError("Not Find helpButtonTransform Transform");
+            //Debug.LogError("Not Find helpButtonTransform Transform");
         }
     }
 
@@ -84,7 +83,7 @@ public class SceneSwitcher : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Not Find BackGround_Help GameObject");
+            //Debug.LogError("Not Find BackGround_Help GameObject");
         }
     }
 
@@ -92,6 +91,47 @@ public class SceneSwitcher : MonoBehaviour
     {
 
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void function()
+    {
+        Transform functionTransform = GetComponentInChildren<Transform>().Find("function_table");
+
+        if (functionTransform != null)
+        {
+
+            if (functionTransform.gameObject != null)
+            {
+                //Debug.Log("Find functionTransform");
+                //functionTransform.gameObject.transform.position = new Vector3(400f, 400f, 0f);
+                functionTransform.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                //Debug.LogError("functionTransform is null");
+            }
+        }
+        else
+        {
+            //Debug.LogError("Not Find functionTransform Transform");
+        }
+    }
+
+    public void closeFunction()
+    {
+        // 使用 GameObject.Find 尋找 BackGround_Help
+        GameObject functionObject = GameObject.Find("function_table");
+
+        if (functionObject != null)
+        {
+            // 找到了 BackGround_Help，將其設為非啟用狀態
+            functionObject.SetActive(false);
+        }
+        else
+        {
+            //Debug.LogError("Not Find function_table GameObject");
+        }
     }
     public void controlVolume()
     {
@@ -104,8 +144,16 @@ public class SceneSwitcher : MonoBehaviour
 
             if (musicControl != null)
             {
-                Debug.Log("Find MusicControl");
-                musicControl.transform.position = new Vector3(400f,400f,0f);
+                //Debug.Log("Find MusicControl");
+                //musicControl.transform.position = new Vector3(400f,400f,0f);
+                //Debug.Log(transform.parent.name);
+                Transform parentTransform = transform.parent;
+                Transform helpButtonTransform = parentTransform.Find("Help_Button");
+                if (helpButtonTransform != null)
+                {
+                    transform.SetAsLastSibling();
+                    //Debug.Log("Help_Button find");
+                }
                 musicControl.SetActive(true);
 
                 // Get the Music_Slider/Effects_Slider component
@@ -131,7 +179,7 @@ public class SceneSwitcher : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Music_Slider is null");
+                    //Debug.LogError("Music_Slider is null");
                 }
                 if (effectsSlider != null)
                 {
@@ -140,18 +188,18 @@ public class SceneSwitcher : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Effects_Slider is null");
+                    //Debug.LogError("Effects_Slider is null");
                 }
 
             }
             else
             {
-                Debug.LogError("musicControl is null");
+                //Debug.LogError("musicControl is null");
             }
         }
         else
         {
-            Debug.LogError("Not Find MusicControl Transform");
+            //Debug.LogError("Not Find MusicControl Transform");
         }
     }
 
@@ -160,7 +208,7 @@ public class SceneSwitcher : MonoBehaviour
     private void OnMusicSliderValueChanged(float value)
     {
         // Output a debug message
-        Debug.Log("Music_Slider Value Changed: " + value);
+        //Debug.Log("Music_Slider Value Changed: " + value);
 
         // Update the volume based on the slider value
         UpdateMusicVolume(value);
@@ -170,7 +218,7 @@ public class SceneSwitcher : MonoBehaviour
     private void OnEffectsSliderValueChanged(float value)
     {
         // Output a debug message
-        Debug.Log("Effects_Slider Value Changed: " + value);
+        //Debug.Log("Effects_Slider Value Changed: " + value);
 
         // Update the volume based on the slider value
         UpdateEffectsVolume(value);
@@ -180,17 +228,18 @@ public class SceneSwitcher : MonoBehaviour
     // Method to update the background music volume
     private void UpdateMusicVolume(float volume)
     {
-        if (musicControl != null)
+        GameObject musiccontrol = GameObject.FindWithTag("MusicControl");
+        if (musiccontrol != null)
         {
             // Map the slider value to your expected volume range
             float mappedVolume = Mathf.Clamp01(volume);
 
             // Set the background music volume based on the mapped volume value
-            audioSource.GetComponent<AudioSource>().volume = mappedVolume;
+            musiccontrol.GetComponent<AudioSource>().volume = mappedVolume;
         }
         else
         {
-            Debug.LogError("MusicControl object does not exist!");
+            //Debug.LogError("MusicControl object does not exist!");
         }
     }
 
@@ -222,13 +271,13 @@ public class SceneSwitcher : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("Button's AudioSource is null");
+                        //Debug.LogError("Button's AudioSource is null");
                     }
                 }
             }
             else
             {
-                Debug.LogError("Effects_Slider not found under Music_Control");
+                //Debug.LogError("Effects_Slider not found under Music_Control");
             }
         
     }
@@ -248,7 +297,13 @@ public class SceneSwitcher : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Not Find Music_Control GameObject");
+            //Debug.LogError("Not Find Music_Control GameObject");
+        }
+        //Debug.Log(transform.name);
+        Transform helpButtonTransform = transform.parent.parent.parent.Find("Help_Button");
+        if (helpButtonTransform != null)
+        {
+            helpButtonTransform.SetAsLastSibling();
         }
     }
     public void OnPlayClick()
@@ -262,7 +317,7 @@ public class SceneSwitcher : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AudioSource not assigned!");
+            //Debug.LogError("AudioSource not assigned!");
         }
     }
     public void OnExitClick()
@@ -276,10 +331,25 @@ public class SceneSwitcher : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AudioSource not assigned!");
+            //Debug.LogError("AudioSource not assigned!");
+        }
+    }
+    public void OnReturnClick()
+    {
+        buttonClickSound = GetComponent<AudioSource>();
+        // 檢查 AudioSource 是否存在並播放音效
+        if (buttonClickSound != null)
+        {
+            buttonClickSound.Play();
+            Invoke("returnmenu", buttonClickSound.clip.length);
+        }
+        else
+        {
+            //Debug.LogError("AudioSource not assigned!");
         }
     }
     
+
 
 
 
