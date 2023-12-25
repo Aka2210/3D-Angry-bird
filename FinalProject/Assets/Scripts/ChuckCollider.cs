@@ -12,7 +12,7 @@ public class ChuckCollider : BirdCommonVar
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -34,7 +34,6 @@ public class ChuckCollider : BirdCommonVar
     {
         //將Chuck的旋轉角度轉到30度
         if(currentRotation.x > 300) currentRotation.x -= 360;
-        Debug.Log("Current X Rotation: " + currentRotation.x);
         while (transform.eulerAngles.x > 80 || transform.eulerAngles.x < 30)
         {
             float newRotationX = currentRotation.x + 100f * Time.deltaTime;
@@ -45,8 +44,6 @@ public class ChuckCollider : BirdCommonVar
         //對Chuck施加較強的力讓他俯衝
         int throwPower = 80;
         rb.AddForce(ThrowingOrient.forward * throwPower, ForceMode.Impulse);
-
-
     }
     private void OnCollisionEnter(Collision collision)
     {

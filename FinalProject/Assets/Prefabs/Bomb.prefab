@@ -219,7 +219,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9998735, z: -0, w: -0.01590983}
   m_LocalPosition: {x: -1.166, y: 1.364, z: -0.944}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6819307709815132441}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab73c5829b0b3c4ebbd673f266be6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdCamera: {fileID: 0}
+  HasCollider: 0
   triggerForce: 0.5
   explosionRadius: 3
   explosionForce: 10000

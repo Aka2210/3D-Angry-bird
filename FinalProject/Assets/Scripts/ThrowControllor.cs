@@ -11,9 +11,10 @@ public class ThrowControllor : MonoBehaviour
     [SerializeField] public Transform ThrowingOrient;
     [SerializeField] Transform Orient;
     public GameObject clonedObject;
-    public float ThrowOffset = 0.1f;
+    public float ThrowOffset = 0.5f;
     public CinemachineVirtualCamera ThrowCamera;
     public float ThrowPowerX = 30, ThrowPowerY = 30;
+    [SerializeField] float _powerThrow, _throw;
 
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
@@ -22,7 +23,8 @@ public class ThrowControllor : MonoBehaviour
 
     void Start()
     {
-        
+        ThrowPowerX = _throw;
+        ThrowPowerY = _throw;
     }
 
     private void Update()
@@ -67,14 +69,14 @@ public class ThrowControllor : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftAlt))
         {
             PowerThrow = true;
-            ThrowPowerX = 50;
-            ThrowPowerY = 50;
+            ThrowPowerX = _powerThrow;
+            ThrowPowerY = _powerThrow;
         }
         else if(!animator.GetBool("Throw"))
         {
             PowerThrow = false;
-            ThrowPowerX = 30;
-            ThrowPowerY = 30;
+            ThrowPowerX = _throw;
+            ThrowPowerY = _throw;
         }
         
         animator.SetBool("PowerThrow", PowerThrow);
