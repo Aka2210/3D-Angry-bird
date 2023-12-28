@@ -223,8 +223,10 @@ namespace StarterAssets
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // 調整相機旋轉
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
-                _cinemachineTargetYaw, 0.0f);
+            if (gameObject.GetComponent<ThrowControllor>().ThrowCamera.Priority != 100)
+                CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
+            else
+                CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, CinemachineCameraTarget.transform.eulerAngles.y, CinemachineCameraTarget.transform.eulerAngles.z);
         }
 
         private void Move()
