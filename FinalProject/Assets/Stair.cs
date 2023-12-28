@@ -1,11 +1,16 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Stair : MonoBehaviour
 {
     float horizontal, vertical;
     [SerializeField] float _upSpeed;
+    [SerializeField] GameObject _player;
+    [SerializeField] ThirdPersonController _controller;
+    RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +20,16 @@ public class Stair : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Physics.Raycast(_player.transform.position, _player.transform.forward, out hit);
+        vertical = Input.GetAxisRaw("Vertical");
         horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxis("Vertical");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log($"{vertical}, {horizontal}, {collision.collider.gameObject.name}");
-        if (collision.collider.tag == "Player" && vertical != 0 || horizontal != 0)
+        if (other.tag == "Player" && hit.collider.gameObject == gameObject && (vertical != 0 || horizontal != 0))
         {
-            Debug.Log("test");
-            collision.collider.gameObject.transform.position = new Vector3(collision.collider.gameObject.transform.position.x, collision.collider.gameObject.transform.position.y + Time.deltaTime * _upSpeed, collision.collider.gameObject.transform.position.z);
+            _controller._verticalVelocity = _upSpeed;
         }
     }
 }
