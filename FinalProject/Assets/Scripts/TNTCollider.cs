@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //�~�Ӧ�BombCollider(�q���⨺���~���z�}�禡������)

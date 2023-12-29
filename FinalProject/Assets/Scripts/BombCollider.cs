@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class BombCollider : BirdCommonVar
 {
@@ -10,6 +7,8 @@ public class BombCollider : BirdCommonVar
     [SerializeField] float explosionForce;
     [SerializeField] GameObject particles;
     [SerializeField] Animator animator;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +35,18 @@ public class BombCollider : BirdCommonVar
         Destroy(gameObject, 3.0f);
     }
 
+    void closeRenderer(GameObject Obj)
+    {
+        if (Obj.GetComponent<Renderer>() != null)
+            Obj.GetComponent<Renderer>().enabled = false;
+
+        foreach (Transform child in Obj.transform)
+            closeRenderer(child.gameObject);
+    }
+
     public void Explosion()
     {
+        audioSource.Play();
         //抓取圓形範圍內所有物件
         var surroundingObject = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -54,7 +63,8 @@ public class BombCollider : BirdCommonVar
         //生成爆炸特效
         GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
 
-        gameObject.active = false;
+        closeRenderer(gameObject);
+
         //刪除炸彈
         Destroy(gameObject, 3.0f);
         //兩秒後刪除特效

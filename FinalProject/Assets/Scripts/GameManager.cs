@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Vector3 _spawn;
+    [SerializeField] GameObject _player;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,8 +21,18 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(collision.collider.gameObject);
+        if (other.CompareTag("Player"))
+        {
+            CharacterController controller = _player.GetComponent<CharacterController>();
+            Vector3 currentPosition = _player.transform.position;
+            // 從當前位置到新位置的向量
+            Vector3 offset = _spawn - currentPosition; 
+            // 使用這個向量移動
+            controller.Move(offset); 
+        }
+        else
+            Destroy(other.gameObject);
     }
 }

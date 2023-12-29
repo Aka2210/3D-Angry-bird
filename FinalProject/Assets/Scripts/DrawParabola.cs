@@ -1,7 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class DrawParabola : MonoBehaviour
@@ -12,6 +9,7 @@ public class DrawParabola : MonoBehaviour
     [SerializeField] private Projection _projection;
     GameObject egg, ThrowingObject;
     Transform ThrowingOrient;
+    public Vector3 ThrowPoint;
 
     void Start()
     {
@@ -30,7 +28,7 @@ public class DrawParabola : MonoBehaviour
             ThrowPowerX = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerX;
             ThrowPowerY = gameObject.GetComponentInParent<ThrowControllor>().ThrowPowerY;
 
-            Vector3 ThrowPoint = egg.transform.position;
+            ThrowPoint = egg.transform.position;
             ThrowPoint.x += 0.069f;
             ThrowPoint.y += 0.961f;
             ThrowPoint.z += 0.212f;
