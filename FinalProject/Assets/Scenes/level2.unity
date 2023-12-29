@@ -2850,7 +2850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 435975077}
   _maxPhysicsFrameIterations: 1000
-  _obstaclesParent: {fileID: 0}
+  _obstaclesParent: {fileID: 745137340}
   _animator: {fileID: 1512423355}
 --- !u!120 &435975077
 LineRenderer:
@@ -3896,6 +3896,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726487555}
   m_CullTransparentMesh: 1
+--- !u!4 &745137340 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5036242049642890289, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+  m_PrefabInstance: {fileID: 4114073212795309263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &775953541
 GameObject:
   m_ObjectHideFlags: 0
@@ -15976,6 +15981,26 @@ PrefabInstance:
     - target: {fileID: 5036242049642890289, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612589570730914463, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1512423348}
+    - target: {fileID: 5612589570730914463, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+      propertyPath: _spawn.x
+      value: -13.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612589570730914463, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+      propertyPath: _spawn.y
+      value: 7.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612589570730914463, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+      propertyPath: _spawn.z
+      value: -13.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978796626497854011, guid: 5d8a7077846e23c449ce6e908039f27d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
