@@ -28,6 +28,9 @@ public class Projection : MonoBehaviour {
         if (ghostObj.gameObject.tag == "TNT")
             ghostObj.gameObject.active = false;
 
+        if(ghostObj.gameObject.GetComponent<AudioSource>() != null)
+            ghostObj.gameObject.GetComponent<AudioSource>().enabled = false;
+
         foreach (Transform child in ghostObj.transform)
             childDfs(child.gameObject);
     }
