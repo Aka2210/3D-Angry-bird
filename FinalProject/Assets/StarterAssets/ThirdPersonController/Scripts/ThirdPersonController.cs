@@ -150,6 +150,12 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            //訂閱更改LockCameraPosition事件
+            SceneSwitcher bScripts = FindObjectOfType<SceneSwitcher>();
+            if (bScripts != null)
+            {
+                bScripts.OnCameraLockStateChanged += UpdateCameraLockState;
+            }
         }
 
         private void Update()
@@ -185,6 +191,11 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
+        private void UpdateCameraLockState()
+        {
+            //若是SceneSwitcher有更改LockCameraPosition，將其值修改
+            LockCameraPosition = GameObject.FindObjectOfType<SceneSwitcher>().GetCamera();
+        }
 
         private void GroundedCheck()
         {
@@ -203,9 +214,11 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
-            //如果正在投擲，將視角鎖定
-            LockCameraPosition = _animator.GetBool("Throw") ? true : false;
-
+            //查看是否暫停遊戲，是的話停用相機，否的話恢復相機
+            if (!LockCameraPosition)
+                //如果正在投擲，將視角鎖定
+                LockCameraPosition = _animator.GetBool("Throw") ? true : false;
+            
             // 前者將輸入的量值開根號，如果太小則不改變視角旋轉參數，中間確保此相機未被鎖定
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {

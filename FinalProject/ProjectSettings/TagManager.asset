@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - MusicControl
+  - LevelFunction
   layers:
   - Default
   - TransparentFX

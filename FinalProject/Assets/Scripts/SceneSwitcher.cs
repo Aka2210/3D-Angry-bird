@@ -1,3 +1,4 @@
+﻿using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 
 public class SceneSwitcher : MonoBehaviour
@@ -13,24 +15,37 @@ public class SceneSwitcher : MonoBehaviour
     AudioSource audioSource;//background
     GameObject musicControl;
     AudioSource buttonClickSound;
+    bool lockcamera = false;
+    public event Action OnCameraLockStateChanged;
+    float musicsound=1.0f, effectssound=1.0f;
+    public bool firstenter = true;
 
     // Start is called before the first frame update
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        musicsound=FindObjectOfType<MusicManagement>().GetMusicVolume();
+        effectssound = FindObjectOfType<MusicManagement>().GetEffectsVolume();
+        firstenter = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape)) {
+            Cursor.visible = true;
+            Cursor.lockState= CursorLockMode.None;            
+        }
+        /*if (GameObject.Find("Music_Control") != null) {
+            SetSliderValue();
+        }*/
     }
     public void start()
     {
-        
-        SceneManager.LoadScene("SampleScene");
+        firstenter = true;
+        SceneManager.LoadScene("ChooseLevelScene");
     }
     public void exit()
     {
@@ -39,7 +54,7 @@ public class SceneSwitcher : MonoBehaviour
     public void help()
     {
         buttonClickSound = GetComponent<AudioSource>();
-        // �ˬd AudioSource �O�_�s�b�ü��񭵮�
+        // 檢查 AudioSource 是否存在並播放音效
         if (buttonClickSound != null)
         {
            buttonClickSound.Play();
@@ -73,12 +88,12 @@ public class SceneSwitcher : MonoBehaviour
 
     public void closeHelp()
     {
-        // �ϥ� GameObject.Find �M�� BackGround_Help
+        // 使用 GameObject.Find 尋找 BackGround_Help
         GameObject helpButtonObject = GameObject.Find("BackGround_Help");
 
         if (helpButtonObject != null)
         {
-            // ���F BackGround_Help�A�N��]���D�ҥΪ��A
+            // 找到了 BackGround_Help，將其設為非啟用狀態
             helpButtonObject.SetActive(false);
         }
         else
@@ -89,7 +104,6 @@ public class SceneSwitcher : MonoBehaviour
 
     public void returnmenu()
     {
-
         SceneManager.LoadScene("StartScene");
     }
 
@@ -102,10 +116,15 @@ public class SceneSwitcher : MonoBehaviour
 
             if (functionTransform.gameObject != null)
             {
+                if (transform.tag == "LevelFunction") {
+
+                    Time.timeScale = 0f;
+                    lockcamera = true;//LockCamera
+                }
                 //Debug.Log("Find functionTransform");
                 //functionTransform.gameObject.transform.position = new Vector3(400f, 400f, 0f);
                 functionTransform.gameObject.SetActive(true);
-
+                OnCameraLockStateChanged?.Invoke();//告知LockCameraPosition已改變
             }
             else
             {
@@ -120,20 +139,45 @@ public class SceneSwitcher : MonoBehaviour
 
     public void closeFunction()
     {
-        // �ϥ� GameObject.Find �M�� BackGround_Help
+        // 使用 GameObject.Find 尋找function_table
         GameObject functionObject = GameObject.Find("function_table");
-
+        
         if (functionObject != null)
         {
-            // ���F BackGround_Help�A�N��]���D�ҥΪ��A
+            
+            Time.timeScale = 1f;
+            lockcamera = false;//UnLock Camera
+            ThirdPersonController thirdPersonController=FindObjectOfType<ThirdPersonController>();
+            if (thirdPersonController != null) { 
+                thirdPersonController.LockCameraPosition = lockcamera;//一定要有這行才能解除相機被鎖定   
+            }                     
+            if (transform.parent.parent.tag == "LevelFunction")
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            // 找到了 function_table，將其設為非啟用狀態
             functionObject.SetActive(false);
+            OnCameraLockStateChanged?.Invoke();//告知LockCameraPosition已改變
         }
         else
         {
             //Debug.LogError("Not Find function_table GameObject");
         }
+
     }
-    public void controlVolume()
+    
+
+    public bool GetCamera() {
+        //Debug.Log("lock"+lockcamera);
+        return lockcamera;//回傳改變的LockCameraPosition之值
+    }
+    public void chooselevel() {
+        string level = transform.GetChild(0).GetComponent<Text>().text;
+        SceneManager.LoadScene(level);
+    }
+
+    public void controlVolume()//音量一直維持一樣在所有場景，開始和選擇關卡音樂一樣，開始遊戲另一個
     {
         // Find MusicControl
         Transform musicControlTransform = GetComponentInChildren<Transform>().Find("Music_Control");
@@ -146,7 +190,7 @@ public class SceneSwitcher : MonoBehaviour
             {
                 //Debug.Log("Find MusicControl");
                 //musicControl.transform.position = new Vector3(400f,400f,0f);
-                //Debug.Log(transform.parent.name);
+                Debug.Log(transform.parent.name);
                 Transform parentTransform = transform.parent;
                 Transform helpButtonTransform = parentTransform.Find("Help_Button");
                 if (helpButtonTransform != null)
@@ -155,7 +199,6 @@ public class SceneSwitcher : MonoBehaviour
                     //Debug.Log("Help_Button find");
                 }
                 musicControl.SetActive(true);
-
                 // Get the Music_Slider/Effects_Slider component
                 Slider musicSlider=null;
                 Slider effectsSlider=null;
@@ -190,7 +233,11 @@ public class SceneSwitcher : MonoBehaviour
                 {
                     //Debug.LogError("Effects_Slider is null");
                 }
-
+                if (firstenter)
+                {
+                    SetSliderValue();
+                    firstenter = false;
+                }
             }
             else
             {
@@ -211,7 +258,15 @@ public class SceneSwitcher : MonoBehaviour
         //Debug.Log("Music_Slider Value Changed: " + value);
 
         // Update the volume based on the slider value
+        musicsound = value;
+        MusicValueChanged();//更改儲存的背景音量大小
+        Debug.Log("OnMusicSliderValueChanged "+FindObjectOfType<MusicManagement>().GetMusicVolume());
         UpdateMusicVolume(value);
+    }
+
+    public float MusicValueChanged()
+    {
+        return musicsound;
     }
 
     // Callback method for when the value of the Effects_Slider changes
@@ -221,7 +276,15 @@ public class SceneSwitcher : MonoBehaviour
         //Debug.Log("Effects_Slider Value Changed: " + value);
 
         // Update the volume based on the slider value
+        effectssound = value;
+        EffectsValueChanged();//更改儲存的按鍵音量大小
+        Debug.Log("OnEffectsSliderValueChanged " + FindObjectOfType<MusicManagement>().GetEffectsVolume());
         UpdateEffectsVolume(value);
+    }
+
+    public float EffectsValueChanged()
+    {
+        return effectssound;
     }
 
     // Method to update the volume
@@ -233,9 +296,10 @@ public class SceneSwitcher : MonoBehaviour
         {
             // Map the slider value to your expected volume range
             float mappedVolume = Mathf.Clamp01(volume);
-
+            //float mappedVolume = Mathf.Clamp01(FindObjectOfType<MusicManagement>().GetMusicVolume());
+            GameObject music = GameObject.Find("Music");
             // Set the background music volume based on the mapped volume value
-            musiccontrol.GetComponent<AudioSource>().volume = mappedVolume;
+            music.GetComponent<AudioSource>().volume = mappedVolume;//更改music物件上音量大小
         }
         else
         {
@@ -250,12 +314,12 @@ public class SceneSwitcher : MonoBehaviour
 
         if (musicControl != null)
         {
-            
-                // Map the slider value to your expected volume range
-                float mappedVolume = Mathf.Clamp01(volume);
 
-                // Set the volume for each button's AudioSource
-                Button[] buttons = transform.parent.GetComponentsInChildren<Button>()
+            // Map the slider value to your expected volume range
+            //float mappedVolume = Mathf.Clamp01(volume);
+            float mappedVolume = Mathf.Clamp01(volume);
+            // Set the volume for each button's AudioSource
+            Button[] buttons = transform.parent.GetComponentsInChildren<Button>()
                     .Where(button => button.name.Contains("Button"))
                     .ToArray();
 
@@ -282,17 +346,44 @@ public class SceneSwitcher : MonoBehaviour
         
     }
 
+    public void SetSliderValue()
+    {
+        // Find MusicControl
+        GameObject musicControl = GameObject.Find("Music_Control");
+
+        if (musicControl != null)
+        {
+            foreach (Slider slider in musicControl.transform.GetComponentsInChildren<Slider>())
+            {
+                if (slider.name == "Effects_Slider")
+                {
+                    slider.value = FindObjectOfType<MusicManagement>().GetEffectsVolume();
+                    Debug.Log("Effects: " + slider.value);
+                }
+                else if (slider.name == "Music_Slider")
+                {
+                    slider.value = FindObjectOfType<MusicManagement>().GetMusicVolume();
+                    Debug.Log("Music: " + slider.value);
+                }
+                Debug.Log(slider.name + slider.value);
+            }
+        }
+        else
+        {
+            Debug.LogError("Music_Control not found.");
+        }
+    }
 
 
 
     public void closeChangeVolume()
     {
-        // �ϥ� GameObject.Find �M�� Music_Control
+        // 使用 GameObject.Find 尋找 Music_Control
         GameObject musicControlObject = GameObject.Find("Music_Control");
 
         if (musicControlObject != null)
         {
-            // ���F Music_Control�A�N��]���D�ҥΪ��A
+            // 找到了 Music_Control，將其設為非啟用狀態
             musicControlObject.SetActive(false);
         }
         else
@@ -309,7 +400,7 @@ public class SceneSwitcher : MonoBehaviour
     public void OnPlayClick()
     {
         buttonClickSound = GetComponent<AudioSource>();
-        // �ˬd AudioSource �O�_�s�b�ü��񭵮�
+        // 檢查 AudioSource 是否存在並播放音效
         if (buttonClickSound != null)
         {
             buttonClickSound.Play();
@@ -323,7 +414,7 @@ public class SceneSwitcher : MonoBehaviour
     public void OnExitClick()
     {
         buttonClickSound = GetComponent<AudioSource>();
-        // �ˬd AudioSource �O�_�s�b�ü��񭵮�
+        // 檢查 AudioSource 是否存在並播放音效
         if (buttonClickSound != null)
         {
             buttonClickSound.Play();
@@ -337,10 +428,14 @@ public class SceneSwitcher : MonoBehaviour
     public void OnReturnClick()
     {
         buttonClickSound = GetComponent<AudioSource>();
-        // �ˬd AudioSource �O�_�s�b�ü��񭵮�
+        // 檢查 AudioSource 是否存在並播放音效
         if (buttonClickSound != null)
         {
             buttonClickSound.Play();
+            if (transform.parent.parent.tag == "LevelFunction")
+            {
+                Time.timeScale = 1f;
+            }
             Invoke("returnmenu", buttonClickSound.clip.length);
         }
         else
@@ -348,7 +443,20 @@ public class SceneSwitcher : MonoBehaviour
             //Debug.LogError("AudioSource not assigned!");
         }
     }
-    
+    public void OnChooseLevel() {
+        buttonClickSound = GetComponent<AudioSource>();
+        // 檢查 AudioSource 是否存在並播放音效
+        if (buttonClickSound != null)
+        {
+            buttonClickSound.Play();
+            Invoke("chooselevel", buttonClickSound.clip.length);
+        }
+        else
+        {
+            //Debug.LogError("AudioSource not assigned!");
+        }
+
+    }
 
 
 
