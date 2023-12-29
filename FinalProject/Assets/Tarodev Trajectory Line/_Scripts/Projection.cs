@@ -25,6 +25,9 @@ public class Projection : MonoBehaviour {
         if (ghostObj.GetComponent<HealthBar>() != null)
             ghostObj.gameObject.active = false;
 
+        if (ghostObj.gameObject.tag == "TNT")
+            ghostObj.gameObject.active = false;
+
         foreach (Transform child in ghostObj.transform)
             childDfs(child.gameObject);
     }

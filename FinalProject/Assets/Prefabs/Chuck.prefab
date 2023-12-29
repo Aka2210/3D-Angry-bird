@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasCollider: 0
+  _birdsDeleteHeight: -10
   rb: {fileID: 1296695474410674269}
   ThrowingObject: {fileID: 2829267127450417045}
   ThrowingOrient: {fileID: 3172860544301362479}

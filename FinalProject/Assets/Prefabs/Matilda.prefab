@@ -676,6 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasCollider: 0
+  _birdsDeleteHeight: -10
   eggBomb: {fileID: 5712395104354971398, guid: 10ce4a6b1e6666e449612c3716ec683f, type: 3}
   ThrowingObject: {fileID: 4949617599113544638}
   ThrowingOrient: {fileID: 5763273093533341956}

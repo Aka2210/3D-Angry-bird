@@ -31,10 +31,10 @@ public class Stair : MonoBehaviour
         if (other.tag == "Player"  && (vertical != 0 || horizontal != 0))
         {
             //以玩家為起始點向前射出射線並把碰撞到的物體儲存在hit
-            Physics.Raycast(_player.transform.position, _player.transform.forward, out hit);
-
+            Physics.Raycast(new Vector3(_player.transform.position.x, _player.transform.position.y, _player.transform.position.z), _player.transform.forward, out hit);
+            Debug.Log(hit.collider.gameObject.name);
             //如果碰撞到的物體=樓梯，代表玩家面相樓梯，使玩家向上爬
-            if(hit.collider.gameObject == gameObject)
+            if (hit.collider.gameObject == gameObject)
                 _controller._verticalVelocity = _upSpeed;
         }
     }

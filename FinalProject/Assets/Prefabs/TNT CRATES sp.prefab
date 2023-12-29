@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb53e5273b292d6449cced4e9178dba8, type: 3}
+      propertyPath: m_TagString
+      value: TNT
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: cb53e5273b292d6449cced4e9178dba8, type: 3}
@@ -149,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasCollider: 0
+  _birdsDeleteHeight: 0
   triggerForce: 0.5
   explosionRadius: 3
   explosionForce: 15000

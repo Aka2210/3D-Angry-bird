@@ -133,9 +133,4 @@ public class ThrowControllor : MonoBehaviour
         PowerThrow = false;
         egg.SetActive(true);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("test");
-    }
 }

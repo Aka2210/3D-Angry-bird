@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - MusicControl
+  - Ball
+  - TNT
   layers:
   - Default
   - TransparentFX
