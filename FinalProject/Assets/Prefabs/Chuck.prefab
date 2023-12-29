@@ -100,6 +100,7 @@ MonoBehaviour:
   rb: {fileID: 1296695474410674269}
   ThrowingObject: {fileID: 2829267127450417045}
   ThrowingOrient: {fileID: 3172860544301362479}
+  throwPower: 200
 --- !u!54 &1296695474410674269
 Rigidbody:
   m_ObjectHideFlags: 0

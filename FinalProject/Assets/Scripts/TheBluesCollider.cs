@@ -37,8 +37,11 @@ public class TheBluesCollider : BirdCommonVar
     }*/
     private void OnCollisionEnter(Collision collision)
     {
-        HasCollider = true;
-        isSplit = true;
-        Destroy(gameObject, 3.0f);
+        if (collision.collider.tag != "Player")
+        {
+            HasCollider = true;
+            isSplit = true;
+            Destroy(gameObject, 3.0f);
+        }
     }
 }

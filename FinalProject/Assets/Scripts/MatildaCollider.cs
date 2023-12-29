@@ -43,9 +43,12 @@ public class MatildaCollider : BirdCommonVar
 
     private void OnCollisionEnter(Collision collision)
     {
-        //丟出後若碰撞到物件則關閉下蛋功能並在三秒後刪除小雞
-        HasCollider = true;
-        isLayEgg = true;
-        Destroy(gameObject, 3.0f);
+        if (collision.collider.tag != "Player")
+        {
+            //丟出後若碰撞到物件則關閉下蛋功能並在三秒後刪除小雞
+            HasCollider = true;
+            isLayEgg = true;
+            Destroy(gameObject, 3.0f);
+        }
     }
 }

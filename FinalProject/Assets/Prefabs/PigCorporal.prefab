@@ -513,7 +513,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eeb66b17e2f6afc4bb589fc64d1e040b, type: 3}
   - {fileID: 8300000, guid: d2b3db5754fe4ba4eb40292658ad5d7e, type: 3}
   - {fileID: 8300000, guid: 6f9ebb26acab5304d9cae42ccbaadbe8, type: 3}
+  damageSound: {fileID: 8300000, guid: ccef2b0ba57bbc1468e4746d1d2cfaac, type: 3}
+  dieSound: {fileID: 8300000, guid: cd125ec270b88c74db4bd09511be1bfd, type: 3}
   audioSource: {fileID: -4607755547946702267}
+  PigDieParticle: {fileID: 8729404141791664915, guid: dd3eebd7cda2fff40ace018dd740da8c, type: 3}
 --- !u!82 &-4607755547946702267
 AudioSource:
   m_ObjectHideFlags: 0

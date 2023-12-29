@@ -29,10 +29,13 @@ public class BombCollider : BirdCommonVar
 
     private void OnCollisionEnter(Collision collision)
     {
-        //若碰撞到物件則三秒後炸彈消失
-        HasCollider = true;
-        animator.SetBool("Collider", true);
-        Destroy(gameObject, 3.0f);
+        if (collision.collider.tag != "Player")
+        {
+            //若碰撞到物件則三秒後炸彈消失
+            HasCollider = true;
+            animator.SetBool("Collider", true);
+            Destroy(gameObject, 3.0f);
+        }
     }
 
     void closeRenderer(GameObject Obj)
@@ -64,6 +67,7 @@ public class BombCollider : BirdCommonVar
         GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
 
         closeRenderer(gameObject);
+        gameObject.GetComponent<Collider>().enabled = false;
 
         //刪除炸彈
         Destroy(gameObject, 3.0f);

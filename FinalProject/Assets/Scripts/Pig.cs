@@ -7,7 +7,10 @@ public class Pig : MonoBehaviour
     [SerializeField] private float _maxHealth = 10, _currentHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
+    [SerializeField] AudioClip damageSound, dieSound;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] GameObject PigDieParticle;
+    
     bool _waitPlay;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,7 @@ public class Pig : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(audioSource != null && !audioSource.isPlaying && !_waitPlay)
+        if(audioClips.Count != 0 && !audioSource.isPlaying && !_waitPlay)
         {
             audioSource.clip = audioClips[Random.Range(0, audioClips.Count)];
             _waitPlay = true;
@@ -29,10 +32,23 @@ public class Pig : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        _currentHealth -= collision.relativeVelocity.magnitude;
+        _currentHealth -= (collision.impulse.magnitude / this.GetComponent<Rigidbody>().mass);
         if (_currentHealth > 0)
         {
+            audioSource.clip = damageSound;
+            if(!audioSource.isPlaying)
+                audioSource.Play();
             _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+        }
+        else
+        {
+            audioSource.clip = dieSound;
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+            _currentHealth = 0;
+            _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+            Instantiate(PigDieParticle, new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z), Quaternion.identity);
+            Destroy(gameObject,0.3f);
         }
     }
 
