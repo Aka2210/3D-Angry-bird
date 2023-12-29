@@ -16,6 +16,7 @@ public class ThrowControllor : MonoBehaviour
     public float ThrowPowerX = 30, ThrowPowerY = 30;
     [SerializeField] float _powerThrow, _throw, _throwHorizontalSpeed;
     Quaternion _throwingOrientInLeftClickDown;
+    [SerializeField] DrawParabola _drawPrabola;
 
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
@@ -37,6 +38,7 @@ public class ThrowControllor : MonoBehaviour
             Quaternion newRotation = Quaternion.Euler(0f, transform.eulerAngles.y, transform.eulerAngles.z);
             Orient.rotation = newRotation;
             ThrowCamera.Priority = ThrowCamera.Priority == 100 ? 0 : 100;
+            ThrowingOrient.transform.rotation = Quaternion.Euler(ThrowingObject.transform.eulerAngles.x, Orient.transform.eulerAngles.y, ThrowingObject.transform.eulerAngles.z);
         }
 
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -101,8 +103,6 @@ public class ThrowControllor : MonoBehaviour
     {
         //抓回按下投擲鍵瞬間的瞄準
         ThrowingOrient.rotation = _throwingOrientInLeftClickDown;
-        //抓取投擲出去的位置，若直接在雞蛋的位置生成，會造成小雞先與玩家碰撞，因此+上微小的Offset解決此問題
-        Vector3 temp = new Vector3(egg.GetComponent<Transform>().position.x, egg.GetComponent<Transform>().position.y + ThrowOffset, egg.GetComponent<Transform>().position.z + ThrowOffset);
         //關閉手中蛋的顯示，代表投擲出去了
         egg.SetActive(false);
 
@@ -111,7 +111,7 @@ public class ThrowControllor : MonoBehaviour
         {
             Destroy(clonedObject);
         }
-        clonedObject = Instantiate(ThrowingObject, temp, ThrowingOrient.transform.rotation);
+        clonedObject = Instantiate(ThrowingObject, _drawPrabola.ThrowPoint, ThrowingOrient.transform.rotation);
 
         birdCamera.GetComponent<CinemachineVirtualCamera>().Follow = clonedObject.transform;
         birdCamera.GetComponent<CinemachineVirtualCamera>().LookAt = clonedObject.transform;

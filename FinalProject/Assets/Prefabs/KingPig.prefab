@@ -720,7 +720,8 @@ GameObject:
   - component: {fileID: 7298854975529965260}
   - component: {fileID: 4064872068417157848}
   - component: {fileID: 4610572271907832328}
-  - component: {fileID: 6652469678342496005}
+  - component: {fileID: 4202541265259902248}
+  - component: {fileID: 4956659424455102825}
   m_Layer: 0
   m_Name: KingPig
   m_TagString: Untagged
@@ -796,7 +797,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6652469678342496005
+--- !u!114 &4202541265259902248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -811,6 +812,109 @@ MonoBehaviour:
   _maxHealth: 10
   _currentHealth: 0
   _healthBar: {fileID: 7671418485987128418}
+  audioClips:
+  - {fileID: 8300000, guid: 1d0625d47b054504d95e12bb090d190b, type: 3}
+  - {fileID: 8300000, guid: 42d0aea415ac5224798d845d390b91ea, type: 3}
+  - {fileID: 8300000, guid: eeb66b17e2f6afc4bb589fc64d1e040b, type: 3}
+  - {fileID: 8300000, guid: d2b3db5754fe4ba4eb40292658ad5d7e, type: 3}
+  - {fileID: 8300000, guid: 6f9ebb26acab5304d9cae42ccbaadbe8, type: 3}
+  audioSource: {fileID: 4956659424455102825}
+--- !u!82 &4956659424455102825
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886150634311616960}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1d0625d47b054504d95e12bb090d190b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6976841520041291216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,10 +1221,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7298854975529965260}
     m_Modifications:
-    - target: {fileID: 4698667403937603321, guid: 7aead54954cc3b44194d7ccd1b71a037, type: 3}
-      propertyPath: pig
-      value: 
-      objectReference: {fileID: 6652469678342496005}
     - target: {fileID: 6863685497664028548, guid: 7aead54954cc3b44194d7ccd1b71a037, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
