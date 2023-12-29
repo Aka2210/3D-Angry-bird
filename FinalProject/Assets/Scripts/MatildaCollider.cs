@@ -32,7 +32,7 @@ public class MatildaCollider : BirdCommonVar
     private void LayEgg()
     {
         //設定爆炸雞蛋生成位置，+0.5f的offset避免一生成就撞到小雞的碰撞箱導致爆炸
-        Vector3 temp = this.transform.position + Vector3.down * 0.5f;
+        Vector3 temp = this.transform.position + Vector3.down * 1f;
         GameObject clonedObject = Instantiate(eggBomb, temp, Quaternion.identity);
 
         //設定小雞下蛋後向向上、前飛的力量

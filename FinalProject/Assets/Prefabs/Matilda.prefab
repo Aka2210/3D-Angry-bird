@@ -606,7 +606,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9995521, z: -0, w: -0.029927783}
   m_LocalPosition: {x: -1.7985396, y: 1.791, z: 0.6923733}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4386306346837480053}
@@ -675,7 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6170ce85fb1b88c4b9604e5159d5ec26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdCamera: {fileID: 6195723710454028438, guid: 116e033cf7e64cb40a1728ad534d9021, type: 3}
+  HasCollider: 0
+  _birdsDeleteHeight: -10
   eggBomb: {fileID: 5712395104354971398, guid: 10ce4a6b1e6666e449612c3716ec683f, type: 3}
   ThrowingObject: {fileID: 4949617599113544638}
   ThrowingOrient: {fileID: 5763273093533341956}

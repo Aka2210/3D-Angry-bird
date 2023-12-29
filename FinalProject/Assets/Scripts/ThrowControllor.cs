@@ -11,9 +11,11 @@ public class ThrowControllor : MonoBehaviour
     [SerializeField] public Transform ThrowingOrient;
     [SerializeField] Transform Orient;
     public GameObject clonedObject;
-    public float ThrowOffset = 0.1f;
+    public float ThrowOffset = 0.5f;
     public CinemachineVirtualCamera ThrowCamera;
     public float ThrowPowerX = 30, ThrowPowerY = 30;
+    [SerializeField] float _powerThrow, _throw, _throwHorizontalSpeed;
+    Quaternion _throwingOrientInLeftClickDown;
 
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
@@ -22,18 +24,32 @@ public class ThrowControllor : MonoBehaviour
 
     void Start()
     {
-        
+        ThrowPowerX = _throw;
+        ThrowPowerY = _throw;
     }
 
     private void Update()
     {
         ThrowCameraActive = CinemachineCore.Instance.IsLive(ThrowCamera);
-        if (Input.GetKeyUp(KeyCode.Q)) 
+        if (Input.GetKeyDown(KeyCode.Q)) 
         {
             Transform transform = ThrowingOrient.transform;
             Quaternion newRotation = Quaternion.Euler(0f, transform.eulerAngles.y, transform.eulerAngles.z);
             Orient.rotation = newRotation;
             ThrowCamera.Priority = ThrowCamera.Priority == 100 ? 0 : 100;
+        }
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (ThrowCamera.Priority == 100 && horizontal == -1)
+        {
+            Orient.Rotate(Vector3.up, -1 * _throwHorizontalSpeed * Time.deltaTime);
+            ThrowingOrient.transform.rotation = Quaternion.Euler(ThrowingObject.transform.eulerAngles.x, Orient.transform.eulerAngles.y, ThrowingObject.transform.eulerAngles.z);
+        }
+        else if(ThrowCamera.Priority == 100 && horizontal == 1)
+        {
+            Orient.Rotate(Vector3.up, _throwHorizontalSpeed * Time.deltaTime);
+            ThrowingOrient.transform.rotation = Quaternion.Euler(ThrowingObject.transform.eulerAngles.x, Orient.transform.eulerAngles.y, ThrowingObject.transform.eulerAngles.z);
         }
 
         if (clonedObject != null)
@@ -48,9 +64,7 @@ public class ThrowControllor : MonoBehaviour
         //偵測滑鼠左鍵被按下，0: 左鍵 1: 右鍵 2: 中鍵
         if(Input.GetMouseButtonDown(0) && !animator.GetBool("Throw") && ThrowCameraActive && clonedObject == null)
         {
-            //動畫開始
-            animator.SetBool("Throw", true);
-            
+            _throwingOrientInLeftClickDown = ThrowingOrient.rotation;
             //設定投擲物的旋轉，使他面向投擲方向
             Vector3 ThrowRotate = ThrowingOrient.rotation.eulerAngles;
             ThrowRotate.x = 0;
@@ -61,20 +75,23 @@ public class ThrowControllor : MonoBehaviour
                 StartCoroutine(CloseThrow(3f));
             else
                 StartCoroutine(CloseThrow(1.8f));
+
+            //動畫開始
+            animator.SetBool("Throw", true);
         }
 
         //較遠的投擲為按住左alt+左鍵並在此設定投擲的X、Y力量
         if (Input.GetKey(KeyCode.LeftAlt))
         {
             PowerThrow = true;
-            ThrowPowerX = 50;
-            ThrowPowerY = 50;
+            ThrowPowerX = _powerThrow;
+            ThrowPowerY = _powerThrow;
         }
         else if(!animator.GetBool("Throw"))
         {
             PowerThrow = false;
-            ThrowPowerX = 30;
-            ThrowPowerY = 30;
+            ThrowPowerX = _throw;
+            ThrowPowerY = _throw;
         }
         
         animator.SetBool("PowerThrow", PowerThrow);
@@ -82,6 +99,8 @@ public class ThrowControllor : MonoBehaviour
 
     void ThrowObject()
     {
+        //抓回按下投擲鍵瞬間的瞄準
+        ThrowingOrient.rotation = _throwingOrientInLeftClickDown;
         //抓取投擲出去的位置，若直接在雞蛋的位置生成，會造成小雞先與玩家碰撞，因此+上微小的Offset解決此問題
         Vector3 temp = new Vector3(egg.GetComponent<Transform>().position.x, egg.GetComponent<Transform>().position.y + ThrowOffset, egg.GetComponent<Transform>().position.z + ThrowOffset);
         //關閉手中蛋的顯示，代表投擲出去了

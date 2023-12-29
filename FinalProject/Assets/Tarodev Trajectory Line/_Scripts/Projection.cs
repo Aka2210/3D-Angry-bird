@@ -17,6 +17,21 @@ public class Projection : MonoBehaviour {
         CreatePhysicsScene();
     }
 
+    void childDfs(GameObject ghostObj)
+    {
+        if (ghostObj.GetComponent<Renderer>() != null)
+            ghostObj.GetComponent<Renderer>().enabled = false;
+
+        if (ghostObj.GetComponent<HealthBar>() != null)
+            ghostObj.gameObject.active = false;
+
+        if (ghostObj.gameObject.tag == "TNT")
+            ghostObj.gameObject.active = false;
+
+        foreach (Transform child in ghostObj.transform)
+            childDfs(child.gameObject);
+    }
+
     private void CreatePhysicsScene() {
         //創建場景
         _simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
@@ -25,8 +40,7 @@ public class Projection : MonoBehaviour {
         //將當前場景中_obstaclesParent中的物件逐一生成並關閉渲染(避免花費太多效能)，然後放入創建的物理場景中，如果物件非static(代表可以物理作用)，將其放入字典中
         foreach (Transform obj in _obstaclesParent) {
             var ghostObj = Instantiate(obj.gameObject, obj.position, obj.rotation);
-            if(ghostObj.GetComponent<Renderer>() != null)
-                ghostObj.GetComponent<Renderer>().enabled = false;
+            childDfs(ghostObj);
             SceneManager.MoveGameObjectToScene(ghostObj, _simulationScene);
             if (!ghostObj.isStatic) _spawnedObjects.Add(obj, ghostObj.transform);
         }
@@ -34,9 +48,8 @@ public class Projection : MonoBehaviour {
 
     private void Update() {
         //將字典中的物件抓出，一一將其位置更改為原場景的位置
-        foreach (var item in _spawnedObjects) {
-            item.Value.position = item.Key.position;
-            item.Value.rotation = item.Key.rotation;
+        foreach (Transform obj in _obstaclesParent) {
+            _spawnedObjects[obj] = obj;
         }
     }
 
@@ -52,9 +65,11 @@ public class Projection : MonoBehaviour {
 
         //根據投擲的動畫更改虛線點的大小
         if (_animator.GetBool("PowerThrow"))
-            _line.textureScale = new Vector2(0.5f, 1);
+        {
+            _line.textureScale = new Vector2(0.166f, 0.33f);
+        }
         else
-            _line.textureScale = new Vector2(0.3f, 1);
+            _line.textureScale = new Vector2(0.1f, 0.33f);
 
         //將投擲的軌跡一一畫出
         for (var i = 0; i < _maxPhysicsFrameIterations; i++) {
@@ -62,7 +77,7 @@ public class Projection : MonoBehaviour {
             _line.SetPosition(i, ghostObj.transform.position);
 
             //如果碰撞則直接離開(代表虛線一遇到物體就停止)
-            if (ghostObj.GetComponent<BirdCommonVar>().HasCollider)
+            if (ghostObj.GetComponent<BirdCommonVar>().HasCollider || ghostObj.transform.position.y <= -1.5f)
             {
                 _line.positionCount = i;
                 break;

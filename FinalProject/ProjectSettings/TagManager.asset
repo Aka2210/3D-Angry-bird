@@ -6,7 +6,12 @@ TagManager:
   tags:
   - CinemachineTarget
   - MusicControl
+<<<<<<< HEAD
   - LevelFunction
+=======
+  - Ball
+  - TNT
+>>>>>>> 9b7a71dcaf17e552b72679efb6608b91e4390939
   layers:
   - Default
   - TransparentFX
