@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BombCollider : BirdCommonVar
@@ -6,9 +7,7 @@ public class BombCollider : BirdCommonVar
     [SerializeField] float explosionRadius;
     [SerializeField] float explosionForce;
     [SerializeField] GameObject particles;
-    [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
-    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +32,6 @@ public class BombCollider : BirdCommonVar
         {
             //若碰撞到物件則三秒後炸彈消失
             HasCollider = true;
-            animator.SetBool("Collider", true);
             Destroy(gameObject, 3.0f);
         }
     }
@@ -61,17 +59,16 @@ public class BombCollider : BirdCommonVar
 
             //參數為爆炸總力, 當前位置, 爆炸半徑, 因此會自動計算此物體距離中心的距離進行不同位置爆炸力不同的計算;
             rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            if (obj.GetComponent<Pig>() != null)
+                obj.GetComponent<Pig>().explosiveDamage(explosionForce);
         }
 
         //生成爆炸特效
-        GameObject explosive = Instantiate(particles, transform.position, Quaternion.identity);
-
-        closeRenderer(gameObject);
-        gameObject.GetComponent<Collider>().enabled = false;
+        Instantiate(particles, transform.position, Quaternion.identity);
 
         //刪除炸彈
-        Destroy(gameObject, 3.0f);
-        //兩秒後刪除特效
-        Destroy(explosive, 2);
+        Destroy(gameObject, 1.0f);
+        closeRenderer(gameObject);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

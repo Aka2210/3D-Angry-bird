@@ -58,4 +58,10 @@ public class Pig : MonoBehaviour
         audioSource.Play();
         _waitPlay = false;
     }
+
+    public void explosiveDamage(float force)
+    {
+        _currentHealth -= (Mathf.Sqrt(Mathf.Sqrt(force)) / this.GetComponent<Rigidbody>().mass);
+        _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+    }
 }
