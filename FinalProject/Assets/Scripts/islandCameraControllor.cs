@@ -20,10 +20,15 @@ public class islandCameraControllor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bird")
+        openCamera(other.gameObject, 1.5f, false);
+    }
+
+    public void openCamera(GameObject collider, float delay, bool TNT)
+    {
+        if ((collider.tag == "Bird" || TNT) && islandCamera.Priority != 10000)
         {
             islandCamera.Priority = 10000;
-            Invoke("closeCamera", 5.0f);
+            Invoke("closeCamera", delay);
         }
     }
 

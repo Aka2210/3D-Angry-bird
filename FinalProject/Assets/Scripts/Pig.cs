@@ -10,7 +10,8 @@ public class Pig : MonoBehaviour
     [SerializeField] AudioClip damageSound, dieSound;
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject PigDieParticle;
-    
+    [SerializeField] islandCameraControllor islandCameraControllor;
+
     bool _waitPlay;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class Pig : MonoBehaviour
         {
             audioSource.clip = audioClips[Random.Range(0, audioClips.Count)];
             _waitPlay = true;
-            StartCoroutine(DelayPlay(Random.Range(1, 4)));
+            StartCoroutine(DelayPlay(Random.Range(3, 7)));
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -39,6 +40,7 @@ public class Pig : MonoBehaviour
             if(!audioSource.isPlaying)
                 audioSource.Play();
             _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+            islandCameraControllor.openCamera(collision.collider.gameObject, 5.0f, false);
         }
         else
         {
@@ -63,5 +65,10 @@ public class Pig : MonoBehaviour
     {
         _currentHealth -= (Mathf.Sqrt(Mathf.Sqrt(force)) / this.GetComponent<Rigidbody>().mass);
         _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+    }
+
+    public float getHealth()
+    {
+        return _currentHealth;
     }
 }

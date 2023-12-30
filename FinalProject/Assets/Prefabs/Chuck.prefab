@@ -101,12 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasCollider: 0
   _birdsDeleteHeight: -10
-  _cameraChangeHeight: -5
-  islandCameraControllor: {fileID: 8350727667037442059, guid: c5e185f860294a341ae1572e66df0bd0, type: 3}
   rb: {fileID: 1296695474410674269}
   ThrowingObject: {fileID: 2829267127450417045}
   ThrowingOrient: {fileID: 3172860544301362479}
-  throwPower: 200
+  throwPower: 300
 --- !u!54 &1296695474410674269
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -31,6 +31,6 @@ public class GameManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Destroy(other.gameObject);
+        Destroy(other.gameObject, 1.0f);
     }
 }

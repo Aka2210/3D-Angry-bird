@@ -161,8 +161,8 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 15000
   particles: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
-  animator: {fileID: 0}
   audioSource: {fileID: -7559162269256711307}
+  islandCameraControllor: {fileID: 0}
 --- !u!82 &-7559162269256711307
 AudioSource:
   m_ObjectHideFlags: 0
