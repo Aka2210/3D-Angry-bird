@@ -4776,6 +4776,10 @@ PrefabInstance:
       propertyPath: islandCamera
       value: 
       objectReference: {fileID: 7771773343767337650}
+    - target: {fileID: 8350727667037442059, guid: c5e185f860294a341ae1572e66df0bd0, type: 3}
+      propertyPath: _throwControllor
+      value: 
+      objectReference: {fileID: 1512423356}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

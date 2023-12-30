@@ -9,6 +9,8 @@ TagManager:
   - CinemachineTarget
   - MusicControl
   - Bird
+  - islandCameraControllor
+  - island
   layers:
   - Default
   - TransparentFX

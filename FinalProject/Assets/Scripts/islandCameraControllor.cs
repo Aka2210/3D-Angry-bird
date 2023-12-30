@@ -6,6 +6,7 @@ using UnityEngine;
 public class islandCameraControllor : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera islandCamera;
+    [SerializeField] ThrowControllor _throwControllor;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,10 @@ public class islandCameraControllor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.R) && _throwControllor.clonedObject != null)
+        {
+            openCamera(_throwControllor.clonedObject, 5.0f, false);
+        }
     }
 
     private void OnTriggerExit(Collider other)
