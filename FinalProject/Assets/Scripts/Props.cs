@@ -18,7 +18,7 @@ public class Props : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"{gameObject.name}, {collision.collider.gameObject.name}");
-        gameObject.GetComponent<AudioSource>().Play();
+        if(gameObject.GetComponent<AudioSource>() != null)
+            gameObject.GetComponent<AudioSource>().Play();
     }
 }

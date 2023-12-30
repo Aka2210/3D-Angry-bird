@@ -43,9 +43,12 @@ public class MatildaCollider : BirdCommonVar
 
     private void OnCollisionEnter(Collision collision)
     {
-        //��X��Y�I���쪫��h�����U�J�\��æb�T���R���p��
-        HasCollider = true;
-        isLayEgg = true;
-        Destroy(gameObject, 3.0f);
+        if (collision.collider.tag != "Player")
+        {
+            //��X��Y�I���쪫��h�����U�J�\��æb�T����R���p��
+            HasCollider = true;
+            isLayEgg = true;
+            Destroy(gameObject, 3.0f);
+        }
     }
 }

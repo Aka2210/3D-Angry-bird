@@ -4,56 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class Projection : MonoBehaviour {
     [SerializeField] private LineRenderer _line;
-    [SerializeField] private int _maxPhysicsFrameIterations = 100;
-    [SerializeField] private Transform _obstaclesParent;
+    [SerializeField] private int _maxPhysicsFrameIterations = 100; 
     [SerializeField] private Animator _animator;
 
     private Scene _simulationScene;
     private PhysicsScene _physicsScene;
-    private readonly Dictionary<Transform, Transform> _spawnedObjects = new Dictionary<Transform, Transform>();
 
     private void Start() {
         //創建一個只有物理模組的場景
         CreatePhysicsScene();
     }
 
-    void childDfs(GameObject ghostObj)
-    {
-        if (ghostObj.GetComponent<Renderer>() != null)
-            ghostObj.GetComponent<Renderer>().enabled = false;
-
-        if (ghostObj.GetComponent<HealthBar>() != null)
-            ghostObj.gameObject.active = false;
-
-        if (ghostObj.gameObject.tag == "TNT")
-            ghostObj.gameObject.active = false;
-
-        if(ghostObj.gameObject.GetComponent<AudioSource>() != null)
-            ghostObj.gameObject.GetComponent<AudioSource>().enabled = false;
-
-        foreach (Transform child in ghostObj.transform)
-            childDfs(child.gameObject);
-    }
-
     private void CreatePhysicsScene() {
         //創建場景
         _simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
         _physicsScene = _simulationScene.GetPhysicsScene();
-
-        //將當前場景中_obstaclesParent中的物件逐一生成並關閉渲染(避免花費太多效能)，然後放入創建的物理場景中，如果物件非static(代表可以物理作用)，將其放入字典中
-        foreach (Transform obj in _obstaclesParent) {
-            var ghostObj = Instantiate(obj.gameObject, obj.position, obj.rotation);
-            childDfs(ghostObj);
-            SceneManager.MoveGameObjectToScene(ghostObj, _simulationScene);
-            if (!ghostObj.isStatic) _spawnedObjects.Add(obj, ghostObj.transform);
-        }
     }
 
     private void Update() {
-        //將字典中的物件抓出，一一將其位置更改為原場景的位置
-        foreach (Transform obj in _obstaclesParent) {
-            _spawnedObjects[obj] = obj;
-        }
+
     }
 
     public void SimulateTrajectory(GameObject ThrowingObject, Vector3 pos, Vector3 velocity) {

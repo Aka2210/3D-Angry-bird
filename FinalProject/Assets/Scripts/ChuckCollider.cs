@@ -7,6 +7,7 @@ public class ChuckCollider : BirdCommonVar
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject ThrowingObject;
     [SerializeField] Transform ThrowingOrient;
+    [SerializeField] float throwPower;
     bool isEnhance = false;　//是否觸發技能
     Vector3 currentRotation; // 目前rotation
     // Start is called before the first frame update
@@ -42,13 +43,15 @@ public class ChuckCollider : BirdCommonVar
             yield return null;
         }
         //對Chuck施加較強的力讓他俯衝
-        int throwPower = 80;
         rb.AddForce(ThrowingOrient.forward * throwPower, ForceMode.Impulse);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //撞到東西後三秒消失
-        HasCollider = true;
-        Destroy(gameObject, 3.0f);
+        if (collision.collider.tag != "Player")
+        {
+            //撞到東西後三秒消失
+            HasCollider = true;
+            Destroy(gameObject, 3.0f);
+        }
     }
 }
