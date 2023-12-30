@@ -19,7 +19,7 @@ public class MatildaCollider : BirdCommonVar
     {
         base.Update();
 
-        //¦pªGR³Q«ö¤U¦Ó¥B©|¥¼¨Ï¥Î¹L¤pÂû§Þ¯à«h°õ¦æ¤pÂû§Þ¯à¨Ã¼Ð°O¬°¤w¨Ï¥Î¹L§Þ¯à
+        //ï¿½pï¿½GRï¿½Qï¿½ï¿½ï¿½Uï¿½Ó¥Bï¿½|ï¿½ï¿½ï¿½Ï¥Î¹Lï¿½pï¿½ï¿½ï¿½Þ¯ï¿½hï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½Þ¯ï¿½Ã¼Ð°Oï¿½ï¿½ï¿½wï¿½Ï¥Î¹Lï¿½Þ¯ï¿½
         if (Input.GetKeyDown(KeyCode.R) && isLayEgg == false)
         {
             LayEgg();
@@ -29,21 +29,21 @@ public class MatildaCollider : BirdCommonVar
 
     private void LayEgg()
     {
-        //³]©wÃz¬µÂû³J¥Í¦¨¦ì¸m¡A+0.5fªºoffsetÁ×§K¤@¥Í¦¨´N¼²¨ì¤pÂûªº¸I¼²½c¾É­PÃz¬µ
+        //ï¿½]ï¿½wï¿½zï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Í¦ï¿½ï¿½ï¿½mï¿½A+0.5fï¿½ï¿½offsetï¿½×§Kï¿½@ï¿½Í¦ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½cï¿½É­Pï¿½zï¿½ï¿½
         Vector3 temp = this.transform.position + Vector3.down * 1f;
         GameObject clonedObject = Instantiate(eggBomb, temp, Quaternion.identity);
 
-        //³]©w¤pÂû¤U³J«á¦V¦V¤W¡B«e­¸ªº¤O¶q
+        //ï¿½]ï¿½wï¿½pï¿½ï¿½ï¿½Uï¿½Jï¿½ï¿½Vï¿½Vï¿½Wï¿½Bï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½q
         int ThrowPowerX = 30, ThrowPowerY = 50;
         rb.AddForce(ThrowingOrient.forward * ThrowPowerX + ThrowingOrient.up * ThrowPowerY, ForceMode.Impulse);
 
-        //¤Q¬í«á§R°£¸ÓÂû³Jª«¥ó¡A½T«OÂû³J§Y¨Ï±¼¶iµêªÅ¤]·|³Q§R°£
+        //ï¿½Qï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½Aï¿½Tï¿½Oï¿½ï¿½ï¿½Jï¿½Yï¿½Ï±ï¿½ï¿½iï¿½ï¿½Å¤]ï¿½|ï¿½Qï¿½Rï¿½ï¿½
         Destroy(clonedObject, 10.0f);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        //¥á¥X«á­Y¸I¼²¨ìª«¥ó«hÃö³¬¤U³J¥\¯à¨Ã¦b¤T¬í«á§R°£¤pÂû
+        //ï¿½ï¿½Xï¿½ï¿½Yï¿½Iï¿½ï¿½ï¿½ìª«ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½Jï¿½\ï¿½ï¿½Ã¦bï¿½Tï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½pï¿½ï¿½
         HasCollider = true;
         isLayEgg = true;
         Destroy(gameObject, 3.0f);
