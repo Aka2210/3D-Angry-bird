@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 3509939580337624011}
   - component: {fileID: -5573444146267166194}
   - component: {fileID: -4607755547946702267}
+  - component: {fileID: -4107737457393654427}
   m_Layer: 0
   m_Name: PigCorporal
   m_TagString: Untagged
@@ -504,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c758a4f9c0c9bc4296bb723d4ca2d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 50
   _currentHealth: 0
   _healthBar: {fileID: 5669587170222136191}
   audioClips:
@@ -613,6 +614,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4107737457393654427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563484588586889130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd875f68a4ee7d74b941bafd7d7b1796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandCamera: {fileID: 0}
 --- !u!1 &3744742209511217150
 GameObject:
   m_ObjectHideFlags: 0

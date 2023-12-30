@@ -418,9 +418,8 @@ MonoBehaviour:
   explosionRadius: 5
   explosionForce: 20000
   particles: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
-  animator: {fileID: 0}
   audioSource: {fileID: -8417203061379850202}
-  skinnedMeshRenderer: {fileID: 0}
+  islandCameraControllor: {fileID: 0}
 --- !u!65 &8720925272452877302
 BoxCollider:
   m_ObjectHideFlags: 0

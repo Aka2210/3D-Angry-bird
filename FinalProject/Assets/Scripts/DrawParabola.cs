@@ -33,6 +33,7 @@ public class DrawParabola : MonoBehaviour
             ThrowPoint.y += 0.961f;
             ThrowPoint.z += 0.212f;
 
+            ThrowingObject = GetComponentInParent<ThrowControllor>().ThrowingObject;
             _projection.SimulateTrajectory(ThrowingObject, ThrowPoint, ThrowingOrient.forward * ThrowPowerX + ThrowingOrient.up * ThrowPowerY);
         }
         else

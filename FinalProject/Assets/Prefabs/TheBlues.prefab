@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheBlues
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
+      propertyPath: m_TagString
+      value: Bird
+      objectReference: {fileID: 0}
     - target: {fileID: 1410675656837825254, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.144
@@ -248,6 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasCollider: 0
   _birdsDeleteHeight: -10
+  _cameraChangeHeight: 0
+  islandCameraControllor: {fileID: 8350727667037442059, guid: c5e185f860294a341ae1572e66df0bd0, type: 3}
   helmet: {fileID: 163760257184257848}
   bird1: {fileID: 1892182145223549262}
   bird2: {fileID: 2167724586885206505}

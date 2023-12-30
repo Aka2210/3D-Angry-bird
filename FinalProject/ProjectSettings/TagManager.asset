@@ -4,15 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - LevelFunction
+  - TNT
   - CinemachineTarget
   - MusicControl
-  - Ball
-  - TNT
+  - Bird
+  - islandCameraControllor
+  - island
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Eggs
+  - egg
   - Water
   - UI
   - 

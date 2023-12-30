@@ -18,21 +18,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if(_player.transform.position.y <= -10)
         {
             CharacterController controller = _player.GetComponent<CharacterController>();
             Vector3 currentPosition = _player.transform.position;
             // 從當前位置到新位置的向量
-            Vector3 offset = _spawn - currentPosition; 
+            Vector3 offset = _spawn - currentPosition;
             // 使用這個向量移動
-            controller.Move(offset); 
+            controller.Move(offset);
         }
-        else
-            Destroy(other.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(other.gameObject, 1.0f);
     }
 }
