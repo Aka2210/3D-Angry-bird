@@ -51,6 +51,7 @@ public class ChuckCollider : BirdCommonVar
         {
             //撞到東西後三秒消失
             HasCollider = true;
+            isEnhance = true;
             Destroy(gameObject, 3.0f);
         }
     }

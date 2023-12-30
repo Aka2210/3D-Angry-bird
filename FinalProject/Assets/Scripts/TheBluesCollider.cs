@@ -7,15 +7,10 @@ public class TheBluesCollider : BirdCommonVar
     // Start is called before the first frame update
     [SerializeField] Transform helmet, bird1, bird2, bird3;
     [SerializeField] Rigidbody rb1, rb2, rb3, rbH;
+    [SerializeField] int throwPower;
     bool isSplit = false;
     void Start()
     {
-        //把不要的丟到天邊
-        //transform.localPosition = Vector3.zero;
-        //bird1.position = transform.position;
-        /*helmet.position = new Vector3(-1000, 0, 0);
-        bird2.position = new Vector3(-1000, 0, 0);
-        bird3.position = new Vector3(-1000, 0, 0);*/
     }
 
     // Update is called once per frame
@@ -34,14 +29,11 @@ public class TheBluesCollider : BirdCommonVar
     }
     void Split()
     {
-        //把不小心遺棄的孩子撿回來
-        //bird2.position = transform.position;
-        //bird3.position = transform.position;
+        //分別丟出去 安全帽下去
         rb1.isKinematic = false;
         rb2.isKinematic = false;
         rb3.isKinematic = false;
         rbH.isKinematic = false;
-        int throwPower = 30;
         rb1.AddForce(-bird1.forward * throwPower, ForceMode.Impulse);
         rb2.AddForce(-bird2.forward * throwPower, ForceMode.Impulse);
         rb3.AddForce(-bird3.forward * throwPower, ForceMode.Impulse);

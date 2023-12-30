@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20257,6 +20257,10 @@ PrefabInstance:
       propertyPath: pairs.Array.data[5].Value
       value: 
       objectReference: {fileID: 1848944661}
+    - target: {fileID: 4312865515984284843, guid: 9b1c7937da973734a85ab0c250bf066a, type: 3}
+      propertyPath: pairs.Array.data[4]._birdPrefabs
+      value: 
+      objectReference: {fileID: 1004120645436292012, guid: 886af228fba72e746bef0d45613866bb, type: 3}
     - target: {fileID: 6032096459880999592, guid: 9b1c7937da973734a85ab0c250bf066a, type: 3}
       propertyPath: m_Name
       value: PlayerArmature
