@@ -3,7 +3,7 @@ using UnityEngine;
 //�~�Ӧ�BombCollider(�q���⨺���~���z�}�禡������)
 public class TNTCollider : BombCollider
 {
-    [SerializeField] islandCameraControllor islandCameraControllor;
+    [SerializeField] islandCameraControllor _islandCameraControllor;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +21,8 @@ public class TNTCollider : BombCollider
         //�p�G�I�����O>=Ĳ�oTNT�һݪ��O�h�i��TNT�z���{���X
         if (collision.relativeVelocity.magnitude >= triggerForce)
         {
-            if (islandCameraControllor != null)
-                islandCameraControllor.openCamera(collision.collider.gameObject, 5.0f, true);
+            if (_islandCameraControllor != null)
+                _islandCameraControllor.openCamera(collision.collider.gameObject, 5.0f, true);
             Explosion();
         }
     }
