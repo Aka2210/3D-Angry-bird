@@ -10,15 +10,25 @@ public class Pig : MonoBehaviour
     [SerializeField] AudioClip damageSound, dieSound;
     [SerializeField] AudioSource audioSource;
     [SerializeField] GameObject PigDieParticle;
-    [SerializeField] islandCameraControllor islandCameraControllor;
+    public islandCameraControllor islandCameraControllor;
+    [SerializeField] GameManager _gameManager;
 
     bool _waitPlay;
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _maxHealth;
-        _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
-        _waitPlay = false;
+        if (_healthBar != null)
+        {
+            _currentHealth = _maxHealth;
+            _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+            _waitPlay = false;
+        }
+
+        if (gameObject.GetComponent<AudioSource>() != null)
+        {
+            gameObject.GetComponent<AudioSource>().mute = true;
+            Invoke("openMusic", 0.5f);
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +38,7 @@ public class Pig : MonoBehaviour
         {
             audioSource.clip = audioClips[Random.Range(0, audioClips.Count)];
             _waitPlay = true;
-            StartCoroutine(DelayPlay(Random.Range(3, 7)));
+            StartCoroutine(DelayPlay(Random.Range(5, 8)));
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -44,6 +54,7 @@ public class Pig : MonoBehaviour
         }
         else
         {
+            _gameManager.pigDie(gameObject.GetComponent<Rigidbody>().mass);
             audioSource.clip = dieSound;
             if (!audioSource.isPlaying)
                 audioSource.Play();
@@ -66,9 +77,18 @@ public class Pig : MonoBehaviour
         _currentHealth -= (Mathf.Sqrt(Mathf.Sqrt(force)) / this.GetComponent<Rigidbody>().mass);
         _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
     }
+    public void redSkillDamage(float force)
+    {
+        _currentHealth -= force / this.GetComponent<Rigidbody>().mass;
+        _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+    }
 
     public float getHealth()
     {
         return _currentHealth;
+    }
+    void openMusic()
+    {
+        gameObject.GetComponent<AudioSource>().mute = false;
     }
 }

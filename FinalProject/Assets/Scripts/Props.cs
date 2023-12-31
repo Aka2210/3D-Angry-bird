@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Props : MonoBehaviour
 {
+    [SerializeField] GameManager _gameManager;
     private void Awake()
     {
         if (gameObject.GetComponent<AudioSource>() != null)
@@ -21,7 +22,8 @@ public class Props : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.2)
+            _gameManager.PropsScore(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
     }
 
     private void OnCollisionEnter(Collision collision)
