@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void PropsScore(float velocity)
     {
-        score += Mathf.Sqrt(velocity);
+        score += velocity;
     }
 
     public void pigDie(float mass)
