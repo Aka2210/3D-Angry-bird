@@ -3,13 +3,15 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image _healthbarSprite;
-    [SerializeField] private Pig pig;
+    public Pig pig;
+    float deltaHight;
     private void Start()
     {
+        deltaHight = transform.position.y - pig.transform.position.y + 1f;
     }
     private void Update()
     {
-        transform.position = new Vector3(pig.transform.position.x, transform.position.y, pig.transform.position.z);
+        transform.position = new Vector3(pig.transform.position.x, pig.transform.position.y + deltaHight, pig.transform.position.z);
     }
     public void UpdateHealthBar(float maxHealth, float currentHealth)
     {

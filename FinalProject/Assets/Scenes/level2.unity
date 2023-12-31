@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.6757515, g: 0.77903193, b: 0.7893794, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15980,6 +15980,8 @@ MonoBehaviour:
   birdCamera: {fileID: 1500047083}
   cloneObject: {fileID: 0}
   Throw: 0
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1512423348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
@@ -16021,7 +16023,13 @@ MonoBehaviour:
   _throw: 75
   _throwHorizontalSpeed: 10
   _drawPrabola: {fileID: 435975075}
+  _birdYellClip: {fileID: 0}
+  _birdYellSource: {fileID: 0}
   birdCamera: {fileID: 1500047081}
+  throwAudioSource: {fileID: 0}
+  goaliethrowAudioSource: {fileID: 0}
+  throwAudioClip: {fileID: 0}
+  goaliethrowAudioClip: {fileID: 0}
 --- !u!114 &1512423362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16038,21 +16046,45 @@ MonoBehaviour:
   - Key: {fileID: 1212997512}
     _birdPrefabs: {fileID: 6356864749123191044, guid: 5829b7eba11c7334eb591f0c3c395ae7, type: 3}
     Value: {fileID: 561442596}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   - Key: {fileID: 1781683563}
     _birdPrefabs: {fileID: 2079072757242878977, guid: 93344e6530fa41b478713090b0e0f3c7, type: 3}
     Value: {fileID: 693278196}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   - Key: {fileID: 779600398}
     _birdPrefabs: {fileID: 2829267127450417045, guid: adaca426fc1b2f04a8aaec9d19ded4e6, type: 3}
     Value: {fileID: 1659751822}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   - Key: {fileID: 1394714210}
     _birdPrefabs: {fileID: 4949617599113544638, guid: 687c4b3d2282d9646a09a70bbd9e5e7e, type: 3}
     Value: {fileID: 207512854}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   - Key: {fileID: 990067694}
     _birdPrefabs: {fileID: 1004120645436292012, guid: 886af228fba72e746bef0d45613866bb, type: 3}
     Value: {fileID: 15801259}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   - Key: {fileID: 35177256}
     _birdPrefabs: {fileID: 7389338632806574855, guid: ba7aab7c868e471489db0c6e7d7da84b, type: 3}
     Value: {fileID: 1848944661}
+    audioClip: {fileID: 0}
+    audioSource: {fileID: 0}
+    yellClip: {fileID: 0}
+    yellSource: {fileID: 0}
   PickUpUI: {fileID: 1262602405}
   Egg: {fileID: 512317399}
   _player: {fileID: 1512423348}
