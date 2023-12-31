@@ -9,6 +9,10 @@ public class BirdImgPair
 {
     public GameObject Key, _birdPrefabs;
     public Image Value;
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+    public AudioClip yellClip;
+    public AudioSource yellSource;
 }
 
 public class ChooseDetect : MonoBehaviour
@@ -17,7 +21,10 @@ public class ChooseDetect : MonoBehaviour
 
     Dictionary<GameObject, Image> _imgs = new Dictionary<GameObject, Image>();
     Dictionary<GameObject, GameObject> _birds = new Dictionary<GameObject, GameObject>();
-
+    Dictionary<GameObject, AudioClip> _audioClips = new Dictionary<GameObject, AudioClip>();
+    Dictionary<GameObject, AudioSource> _audioSources = new Dictionary<GameObject, AudioSource>();
+    Dictionary<GameObject, AudioClip> _yellClips = new Dictionary<GameObject, AudioClip>();
+    Dictionary<GameObject, AudioSource> _yellSources = new Dictionary<GameObject, AudioSource>();
     [SerializeField]
     GameObject PickUpUI, Egg, _player;
     [SerializeField] LayerMask layerMask;
@@ -25,12 +32,17 @@ public class ChooseDetect : MonoBehaviour
     [SerializeField] Image nowBird;
     private bool _hasEgg;
     GameObject nowCollider;
+    
     void Awake()
     {
         foreach (BirdImgPair pair in pairs)
         {
             _imgs[pair.Key] = pair.Value;
             _birds[pair.Key] = pair._birdPrefabs;
+            _audioClips[pair.Key] = pair.audioClip;
+            _audioSources[pair.Key] = pair.audioSource;
+            _yellClips[pair.Key] = pair.yellClip;
+            _yellSources[pair.Key] = pair.yellSource;
         }
     }
 
@@ -75,6 +87,10 @@ public class ChooseDetect : MonoBehaviour
             Egg.SetActive(true);
             nowBird.sprite = _imgs[nowCollider].sprite;
             _player.GetComponent<ThrowControllor>().ThrowingObject = _birds[nowCollider];
+            _player.GetComponent<ThrowControllor>()._birdYellClip = _yellClips[nowCollider];
+            _player.GetComponent<ThrowControllor>()._birdYellSource = _yellSources[nowCollider];
+            _audioSources[nowCollider].clip = _audioClips[nowCollider];
+            _audioSources[nowCollider].Play();
         }
     }
 }
