@@ -823,6 +823,8 @@ MonoBehaviour:
   dieSound: {fileID: 8300000, guid: cd125ec270b88c74db4bd09511be1bfd, type: 3}
   audioSource: {fileID: 4956659424455102825}
   PigDieParticle: {fileID: 8729404141791664915, guid: dd3eebd7cda2fff40ace018dd740da8c, type: 3}
+  islandCameraControllor: {fileID: 0}
+  _gameManager: {fileID: 0}
 --- !u!82 &4956659424455102825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -931,7 +933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd875f68a4ee7d74b941bafd7d7b1796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  islandCamera: {fileID: 0}
+  _islandCamera: {fileID: 0}
+  _throwControllor: {fileID: 0}
 --- !u!1 &6976841520041291216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1241,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7298854975529965260}
     m_Modifications:
+    - target: {fileID: 4698667403937603321, guid: 7aead54954cc3b44194d7ccd1b71a037, type: 3}
+      propertyPath: pig
+      value: 
+      objectReference: {fileID: 4202541265259902248}
     - target: {fileID: 6863685497664028548, guid: 7aead54954cc3b44194d7ccd1b71a037, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
