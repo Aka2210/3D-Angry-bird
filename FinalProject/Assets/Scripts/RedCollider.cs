@@ -19,6 +19,8 @@ public class RedCollider : BirdCommonVar
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+
         var surroundingObject = Physics.OverlapSphere(transform.position, skillRange);
         foreach(Collider other in surroundingObject)
         {

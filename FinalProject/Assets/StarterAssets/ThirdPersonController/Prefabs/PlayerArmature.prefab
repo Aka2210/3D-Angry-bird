@@ -5903,8 +5903,8 @@ MonoBehaviour:
   _throw: 75
   _throwHorizontalSpeed: 10
   _drawPrabola: {fileID: 4354185152511856850}
-  _birdYellClip: {fileID: 0}
-  _birdYellSource: {fileID: 0}
+  _birdYellClip: {fileID: 8300000, guid: 364484b8daf82574ba6761370f7e4400, type: 3}
+  _birdYellSource: {fileID: 4764279320003213240}
   birdCamera: {fileID: 0}
   throwAudioSource: {fileID: 4151765141683971330}
   goaliethrowAudioSource: {fileID: 6504542959966026483}
