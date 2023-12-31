@@ -6,11 +6,10 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Pig pig;
     private void Start()
     {
-
     }
     private void Update()
     {
-        
+        transform.position = new Vector3(pig.transform.position.x, transform.position.y, pig.transform.position.z);
     }
     public void UpdateHealthBar(float maxHealth, float currentHealth)
     {
