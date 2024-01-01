@@ -17,12 +17,16 @@ public class ThrowControllor : MonoBehaviour
     [SerializeField] float _powerThrow, _throw, _throwHorizontalSpeed;
     Quaternion _throwingOrientInLeftClickDown;
     [SerializeField] DrawParabola _drawPrabola;
+    public AudioClip _birdYellClip;
+    public AudioSource _birdYellSource;
 
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
 
     public GameObject birdCamera;
 
+    [SerializeField] AudioSource throwAudioSource, goaliethrowAudioSource;
+    [SerializeField] AudioClip throwAudioClip, goaliethrowAudioClip;
     void Start()
     {
         ThrowPowerX = _throw;
@@ -132,5 +136,21 @@ public class ThrowControllor : MonoBehaviour
         animator.SetBool("Throw", false);
         PowerThrow = false;
         egg.SetActive(true);
+    }
+
+    void PlayThrowAudio()
+    {
+        throwAudioSource.clip = throwAudioClip;
+        throwAudioSource.Play();
+    }
+    void PlayGoalieThrowAudio()
+    {
+        goaliethrowAudioSource.clip = goaliethrowAudioClip;
+        goaliethrowAudioSource.Play();
+    }
+    void PlayBirdYell()
+    {
+        _birdYellSource.clip = _birdYellClip;
+        _birdYellSource.Play();
     }
 }

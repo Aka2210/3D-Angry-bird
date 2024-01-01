@@ -127,7 +127,7 @@ public class SceneSwitcher : MonoBehaviour
                 ThirdPersonController thirdPersonController = FindObjectOfType<ThirdPersonController>();
                 if (thirdPersonController != null)
                 {
-                    thirdPersonController.pause = lockcamera;//直接更新是否暫停   
+                    thirdPersonController.Stop = lockcamera;//直接更新是否暫停   
                     //Debug.Log("function pause: " + thirdPersonController.pause);
                 }
                 functionTransform.gameObject.SetActive(true);
@@ -156,7 +156,7 @@ public class SceneSwitcher : MonoBehaviour
             lockcamera = false;//UnLock Camera
             ThirdPersonController thirdPersonController=FindObjectOfType<ThirdPersonController>();
             if (thirdPersonController != null) { 
-                thirdPersonController.pause = lockcamera;//直接更新是否暫停   
+                thirdPersonController.Stop = lockcamera;//直接更新是否暫停   
             }                     
             if (transform.parent.parent.tag == "LevelFunction")
             {

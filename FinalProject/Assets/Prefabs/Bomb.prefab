@@ -201,11 +201,10 @@ GameObject:
   - component: {fileID: 2451190064014235775}
   - component: {fileID: 6156709729210930661}
   - component: {fileID: 813308461442517066}
-  - component: {fileID: 5513129999127856846}
   - component: {fileID: -9121979883074955542}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,30 +292,9 @@ MonoBehaviour:
   explosionRadius: 3
   explosionForce: 10000
   particles: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
-  animator: {fileID: 5513129999127856846}
+  animator: {fileID: 0}
   audioSource: {fileID: -9121979883074955542}
   skinnedMeshRenderer: {fileID: 2861957071754752182}
---- !u!95 &5513129999127856846
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079072757242878977}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b34edb8de9db532489b63dac3e8ade11, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &-9121979883074955542
 AudioSource:
   m_ObjectHideFlags: 0
