@@ -24,7 +24,7 @@ public class islandCameraControllor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        openCamera(other.gameObject, 1.5f, false);
+        openCamera(other.gameObject, 3f, false);
     }
 
     public void openCamera(GameObject collider, float delay, bool TNT)
