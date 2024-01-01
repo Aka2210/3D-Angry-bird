@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!114 &149367734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1218,6 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 589761931}
   - component: {fileID: 589761932}
+  - component: {fileID: 589761933}
   m_Layer: 5
   m_Name: Music_Slider
   m_TagString: Untagged
@@ -1299,6 +1301,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &589761933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589761930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb5b55bcc952784797b47bb81b05270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &642081501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,6 +2115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!1 &1065630167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!82 &1065630173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3021,6 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!82 &1594230215
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3565,6 +3582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5471ded5a3f3b4f851e48a61be1839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newAudioClip:
+  - {fileID: 8300000, guid: e2f4acb7e21ae834cb055e8d50802942, type: 3}
+  - {fileID: 8300000, guid: c2bcb298ac576344aa11d79ce65c3c92, type: 3}
 --- !u!4 &1851416794
 Transform:
   m_ObjectHideFlags: 0
@@ -3727,6 +3747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!82 &1993129521
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3969,6 +3990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a6802cc61db14db1cf95d8c151d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstenter: 1
 --- !u!1 &2094051306
 GameObject:
   m_ObjectHideFlags: 0
