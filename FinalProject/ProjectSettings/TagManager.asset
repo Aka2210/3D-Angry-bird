@@ -3,6 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
+  tags: []
+=======
   tags:
   - LevelFunction
   - TNT
@@ -11,11 +14,16 @@ TagManager:
   - Bird
   - islandCameraControllor
   - island
+>>>>>>> b1042a9c62d31320e4ab05b49509da029391bfca
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+<<<<<<< HEAD
+  - 
+=======
   - egg
+>>>>>>> b1042a9c62d31320e4ab05b49509da029391bfca
   - Water
   - UI
   - 
