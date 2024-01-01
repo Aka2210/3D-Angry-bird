@@ -206,6 +206,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6484769609331034333}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1770368750201064432}
     - targetCorrespondingSourceObject: {fileID: -3507657829039746495, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 979875468832018183}
@@ -227,6 +230,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6121921437926185950, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5183643444498951170}
+    - targetCorrespondingSourceObject: {fileID: -6121921437926185950, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7676229320748550820}
   m_SourcePrefab: {fileID: 100100000, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
 --- !u!4 &163760257184257848 stripped
 Transform:
@@ -252,8 +258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasCollider: 0
   _birdsDeleteHeight: -10
-  _cameraChangeHeight: 0
-  islandCameraControllor: {fileID: 8350727667037442059, guid: c5e185f860294a341ae1572e66df0bd0, type: 3}
   helmet: {fileID: 163760257184257848}
   bird1: {fileID: 1892182145223549262}
   bird2: {fileID: 2167724586885206505}
@@ -262,6 +266,11 @@ MonoBehaviour:
   rb2: {fileID: 3500341721438453184}
   rb3: {fileID: 9012635857444172151}
   rbH: {fileID: 5183643444498951170}
+  c: {fileID: 1770368750201064432}
+  c1: {fileID: 1609948320659270340}
+  c2: {fileID: 7659231456899147685}
+  c3: {fileID: 5896337173741742246}
+  cH: {fileID: 7676229320748550820}
   throwPower: 90
 --- !u!54 &6484769609331034333
 Rigidbody:
@@ -290,6 +299,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &1770368750201064432
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004120645436292012}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5446079
+  m_Height: 1.0892158
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0.0446078}
 --- !u!1 &1063179580289631741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1148171099872969472, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
@@ -339,7 +371,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.29480514
   m_Height: 0.63213736
@@ -392,6 +424,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &7676229320748550820
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036731659981365983}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.49219808
+  m_Height: 1.2754452
+  m_Direction: 1
+  m_Center: {x: -0.017730951, y: 0.10607195, z: 0.4940465}
 --- !u!1 &5473608141502631957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5393089293468292840, guid: d0fae47d98c337e4ba9b1c2dacf6956d, type: 3}
@@ -441,7 +496,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.26343167
   m_Height: 0.5746652
@@ -496,7 +551,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.2777551
   m_Height: 0.5622305
