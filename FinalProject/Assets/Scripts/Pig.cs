@@ -83,6 +83,12 @@ public class Pig : MonoBehaviour
         _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
     }
 
+    public void BigRedDamage()
+    {
+        _currentHealth /= 2;
+        _healthBar.UpdateHealthBar(_maxHealth, _currentHealth);
+    }
+
     public float getHealth()
     {
         return _currentHealth;
