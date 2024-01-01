@@ -3310,7 +3310,7 @@ GameObject:
   - component: {fileID: 325447707}
   - component: {fileID: 325447706}
   m_Layer: 5
-  m_Name: 'Help_Button '
+  m_Name: Help_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5016,9 +5016,9 @@ RectTransform:
   - {fileID: 286701672}
   - {fileID: 1489258553}
   - {fileID: 1975508400}
-  - {fileID: 325447702}
-  - {fileID: 1491217784}
   - {fileID: 2032971496}
+  - {fileID: 1491217784}
+  - {fileID: 325447702}
   m_Father: {fileID: 8282446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14364,7 +14364,7 @@ GameObject:
   - component: {fileID: 1572066722}
   m_Layer: 5
   m_Name: Music_Control
-  m_TagString: Untagged
+  m_TagString: MusicControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18736,7 +18736,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032971495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

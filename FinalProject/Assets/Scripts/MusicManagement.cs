@@ -155,7 +155,7 @@ public class MusicManagement : MonoBehaviour
                 }
                 else
                 {
-                    audioSource.Stop();
+                    //audioSource.Stop();
                     audioSource.clip = newAudioClip[0];  // 播放第一首音樂
                     audioSource.volume = musicVolume;
                     audioSource.Play();
@@ -168,7 +168,7 @@ public class MusicManagement : MonoBehaviour
     // 這個方法用於保存音量值
     private void SaveVolumes()
     {
-        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        //PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         //PlayerPrefs.SetFloat("EffectsVolume", effectsVolume);
         //Debug.Log("Save " + musicVolume);
         //Debug.Log("Save " + effectsVolume);

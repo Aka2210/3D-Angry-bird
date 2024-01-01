@@ -199,7 +199,7 @@ public class SceneSwitcher : MonoBehaviour
             {
                 //Debug.Log("Find MusicControl");
                 //musicControl.transform.position = new Vector3(400f,400f,0f);
-                //Debug.Log(transform.parent.name);
+                Debug.Log(transform.parent.name);
                 Transform parentTransform = transform.parent;
                 Transform helpButtonTransform = parentTransform.Find("Help_Button");
                 if (helpButtonTransform != null)
@@ -207,6 +207,7 @@ public class SceneSwitcher : MonoBehaviour
                     transform.SetAsLastSibling();
                     //Debug.Log("Help_Button find");
                 }
+                //else Debug.Log("null");
                 musicControl.SetActive(true);
                 // Get the Music_Slider/Effects_Slider component
                 Slider musicSlider=null;
