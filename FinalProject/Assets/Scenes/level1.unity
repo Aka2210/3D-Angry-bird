@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.67433286, g: 0.77783763, b: 0.78887975, a: 1}
+  m_IndirectSpecularColor: {r: 0.6757515, g: 0.77903193, b: 0.7893794, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16744,6 +16744,30 @@ PrefabInstance:
       propertyPath: _throwControllor
       value: 
       objectReference: {fileID: 5584058576038453337}
+    - target: {fileID: 5553597293666813801, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779118476542864624, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779118476542864624, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.452
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779118476542864624, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99578625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779118476542864624, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09170442
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779118476542864624, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -10.523
+      objectReference: {fileID: 0}
     - target: {fileID: 5962811379427406268, guid: 2989a18f6e77f244592f9c88662ef7a5, type: 3}
       propertyPath: islandCameraControllor
       value: 
@@ -23904,6 +23928,14 @@ PrefabInstance:
       propertyPath: pairs.Array.data[5].Value
       value: 
       objectReference: {fileID: 1848944661}
+    - target: {fileID: 5029802268862727507, guid: 9b1c7937da973734a85ab0c250bf066a, type: 3}
+      propertyPath: m_Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029802268862727507, guid: 9b1c7937da973734a85ab0c250bf066a, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6635885198856549386, guid: 9b1c7937da973734a85ab0c250bf066a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.68

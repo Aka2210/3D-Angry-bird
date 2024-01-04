@@ -1,6 +1,7 @@
 using StarterAssets;
 using UnityEngine;
 
+//Ãkª¦¼Ó±è
 public class Stair : MonoBehaviour
 {
     float horizontal, vertical;
