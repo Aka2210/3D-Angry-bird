@@ -16,7 +16,7 @@ public class MusicManagement : MonoBehaviour
     public AudioClip[] newAudioClip;
     private string currentSceneName;  // 保存目前的場景名稱
     private bool hasPlayedCurrentAudio;  // 是否已經播放了當前場景的音樂
-    private AudioClip lastPlayedAudioClip;  // 上一次播放的音樂
+    private string lastPlayedAudioClip;  // 上一次播放的音樂
     private void Awake()
     {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
@@ -135,6 +135,7 @@ public class MusicManagement : MonoBehaviour
     {
         Debug.Log("Switching audio for scene: " + sceneName);
         // 根據場景名稱切換音樂
+        audioSource = transform.GetComponent<AudioSource>();
         switch (sceneName)
         {
             case "level1":
@@ -142,22 +143,21 @@ public class MusicManagement : MonoBehaviour
             case "level3":
                 audioSource.Stop();  // 停止目前的音樂
                 audioSource.clip = newAudioClip[1];  // 播放第二首音樂
-                audioSource.volume = musicVolume;
+                audioSource.volume = PlayerPrefs.GetFloat("MusicVolume");
                 audioSource.Play();  // 播放新的音樂
-                hasPlayedCurrentAudio = true;
+                hasPlayedCurrentAudio = true;                
                 break;
             default:
                 // 如果上一次播放的音樂和目前的音樂相同，就還原音量，否則切換新音樂
-                if (lastPlayedAudioClip == newAudioClip[0])
+                if (lastPlayedAudioClip == newAudioClip[0].name)
                 {
-                    audioSource.volume = musicVolume;
-                    //audioSource.Play();
+                    audioSource.volume = PlayerPrefs.GetFloat("MusicVolume");
                 }
                 else
                 {
-                    //audioSource.Stop();
+                    audioSource.Stop();
                     audioSource.clip = newAudioClip[0];  // 播放第一首音樂
-                    audioSource.volume = musicVolume;
+                    audioSource.volume = PlayerPrefs.GetFloat("MusicVolume");
                     audioSource.Play();
                 }
                 hasPlayedCurrentAudio = true;
@@ -168,11 +168,10 @@ public class MusicManagement : MonoBehaviour
     // 這個方法用於保存音量值
     private void SaveVolumes()
     {
-        //PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-        //PlayerPrefs.SetFloat("EffectsVolume", effectsVolume);
         //Debug.Log("Save " + musicVolume);
         //Debug.Log("Save " + effectsVolume);
         PlayerPrefs.Save();  // 保存 PlayerPrefs
-        lastPlayedAudioClip = audioSource.clip;
+        lastPlayedAudioClip = transform.GetComponent<AudioSource>().clip.name;
+        //Debug.Log(lastPlayedAudioClip);
     }
 }

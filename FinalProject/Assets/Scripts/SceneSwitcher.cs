@@ -29,7 +29,6 @@ public class SceneSwitcher : MonoBehaviour
         musicsound= PlayerPrefs.GetFloat("MusicVolume");
         effectssound = PlayerPrefs.GetFloat("EffectsVolume");
         //Debug.Log("start"+effectssound);
-
     }
 
     // Update is called once per frame
@@ -185,7 +184,10 @@ public class SceneSwitcher : MonoBehaviour
         //Debug.Log(level);
         SceneManager.LoadScene(level);
     }
-
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void controlVolume()//音量一直維持一樣在所有場景，開始和選擇關卡音樂一樣，開始遊戲另一個
     {
         // Find MusicControl
@@ -271,7 +273,8 @@ public class SceneSwitcher : MonoBehaviour
         // Update the volume based on the slider value
         musicsound = value;
         MusicValueChanged();//更改儲存的背景音量大小
-        //Debug.Log("OnMusicSliderValueChanged "+FindObjectOfType<MusicManagement>().GetMusicVolume());
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        Debug.Log("OnMusicSliderValueChanged "+ musicsound);
         UpdateMusicVolume(value);
     }
 
@@ -474,6 +477,26 @@ public class SceneSwitcher : MonoBehaviour
             //Debug.LogError("AudioSource not assigned!");
         }
 
+    }
+    public void OnRePlayClick()
+    {
+        buttonClickSound = GetComponent<AudioSource>();
+        // 檢查 AudioSource 是否存在並播放音效
+        if (buttonClickSound != null)
+        {
+            buttonClickSound.volume = PlayerPrefs.GetFloat("EffectsVolume", effectssound);
+            //Debug.Log(effectssound);
+            buttonClickSound.Play();
+            if (transform.parent.parent.tag == "LevelFunction")
+            {
+                Time.timeScale = 1f;
+            }
+            Invoke("restart", buttonClickSound.clip.length);
+        }
+        else
+        {
+            //Debug.LogError("AudioSource not assigned!");
+        }
     }
 
 }
