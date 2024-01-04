@@ -30,7 +30,7 @@ public class MatildaCollider : BirdCommonVar
     private void LayEgg()
     {
         //�]�w�z�����J�ͦ���m�A+0.5f��offset�קK�@�ͦ��N����p�����I���c�ɭP�z��
-        Vector3 temp = this.transform.position + Vector3.down * 1f;
+        Vector3 temp = this.transform.position + Vector3.down * 2f;
         GameObject clonedObject = Instantiate(eggBomb, temp, Quaternion.identity);
 
         //�]�w�p���U�J��V�V�W�B�e�����O�q

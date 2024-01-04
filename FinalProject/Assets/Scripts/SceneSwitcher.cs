@@ -36,7 +36,8 @@ public class SceneSwitcher : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape)) {
             Cursor.visible = true;
-            Cursor.lockState= CursorLockMode.None;            
+            Cursor.lockState= CursorLockMode.None;
+            function();
         }
         /*if (GameObject.Find("Music_Control") != null&&firstenter) {
             SetSliderValue();
