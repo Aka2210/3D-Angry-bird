@@ -67,7 +67,7 @@ public class BombCollider : BirdCommonVar
         Instantiate(particles, transform.position, Quaternion.identity);
 
         //刪除炸彈
-        Destroy(gameObject, 1.0f);
+        Destroy(gameObject, 0.5f);
         closeRenderer(gameObject);
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
