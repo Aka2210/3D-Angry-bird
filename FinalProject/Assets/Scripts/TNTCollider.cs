@@ -1,6 +1,5 @@
 using UnityEngine;
 
-//�~�Ӧ�BombCollider(�q���⨺���~���z�}�禡������)
 public class TNTCollider : BombCollider
 {
     [SerializeField] islandCameraControllor _islandCameraControllor;
