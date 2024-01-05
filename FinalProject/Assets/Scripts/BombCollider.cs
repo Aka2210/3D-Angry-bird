@@ -1,6 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
+//炸彈鳥技能控制及爆破程式碼
 public class BombCollider : BirdCommonVar
 {
     [SerializeField] public float triggerForce;
@@ -18,8 +18,10 @@ public class BombCollider : BirdCommonVar
     // Update is called once per frame
     void Update()
     {
+        //先將繼承來的Update執行，確保憤怒鳥低於高度可以被刪除
         base.Update();
 
+        //按R後執行技能
         if(Input.GetKeyDown(KeyCode.R)) 
         {
             Explosion();
@@ -28,6 +30,7 @@ public class BombCollider : BirdCommonVar
 
     private void OnCollisionEnter(Collision collision)
     {
+        //若碰撞到的物體不是玩家就在三秒後刪除
         if (collision.collider.tag != "Player")
         {
             //若碰撞到物件則三秒後炸彈消失
@@ -36,6 +39,7 @@ public class BombCollider : BirdCommonVar
         }
     }
 
+    //關閉物件渲染，若直接刪除會導致後續程式碼未運行完畢而達不到效果時，使用渲染關閉代替直接刪除物件
     void closeRenderer(GameObject Obj)
     {
         if (Obj.GetComponent<Renderer>() != null)
@@ -45,8 +49,10 @@ public class BombCollider : BirdCommonVar
             closeRenderer(child.gameObject);
     }
 
+    //爆破函式，適用於TNT、炸彈鳥、白鳥的蛋
     public void Explosion()
     {
+        //爆炸聲音撥放
         audioSource.Play();
         //抓取圓形範圍內所有物件
         var surroundingObject = Physics.OverlapSphere(transform.position, explosionRadius);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//所有憤怒鳥的基底class，用來處理高度低於刪除高度及碰撞後n秒消失
 public class BirdCommonVar : MonoBehaviour
 {
     public bool HasCollider = false;

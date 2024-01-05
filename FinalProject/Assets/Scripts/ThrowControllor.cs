@@ -2,9 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
+//最主要的角色系統控制，一堆交互作用產生的bug又多又麻煩的程式碼
 public class ThrowControllor : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //設定各式各樣的參數，意義與名稱相同，其中Orient代表角色面向(Z軸)，ThrowingOrient代表camera面向(抓取仰角)，CloneObject代表投擲出的物件
     [SerializeField] Animator animator;
     [SerializeField] public GameObject egg;
     public GameObject ThrowingObject;
@@ -14,6 +15,7 @@ public class ThrowControllor : MonoBehaviour
     public float ThrowOffset = 0.5f;
     public CinemachineVirtualCamera ThrowCamera;
     public float ThrowPowerX = 30, ThrowPowerY = 30;
+    //_powerThrow代表遠距離投擲力量，_throw代表近距離投擲力量，_throwHorizontalSpeed代表投擲時左右拋物線移動速度
     [SerializeField] float _powerThrow, _throw, _throwHorizontalSpeed;
     Quaternion _throwingOrientInLeftClickDown;
     [SerializeField] DrawParabola _drawPrabola;
@@ -23,6 +25,7 @@ public class ThrowControllor : MonoBehaviour
     bool PowerThrow = false;
     bool ThrowCameraActive = false;
 
+    //相機跟隨鳥
     public GameObject birdCamera;
 
     [SerializeField] AudioSource throwAudioSource, goaliethrowAudioSource;
@@ -36,6 +39,7 @@ public class ThrowControllor : MonoBehaviour
     private void Update()
     {
         ThrowCameraActive = CinemachineCore.Instance.IsLive(ThrowCamera);
+        //Q後將角色面向強制轉為視角面向
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
             Transform transform = ThrowingOrient.transform;
@@ -47,6 +51,7 @@ public class ThrowControllor : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
 
+        //方向左、右使投擲視角左右移動
         if (ThrowCamera.Priority == 100 && horizontal == -1)
         {
             Orient.Rotate(Vector3.up, -1 * _throwHorizontalSpeed * Time.deltaTime);
@@ -58,6 +63,7 @@ public class ThrowControllor : MonoBehaviour
             ThrowingOrient.transform.rotation = Quaternion.Euler(ThrowingObject.transform.eulerAngles.x, Orient.transform.eulerAngles.y, ThrowingObject.transform.eulerAngles.z);
         }
 
+        //如果當前有投擲物正在飛，設定跟隨相機的參數
         if (clonedObject != null)
         {
             Vector3 birdCameraPosition = new Vector3(clonedObject.transform.position.x + 10, clonedObject.transform.position.y, clonedObject.transform.position.z);
@@ -117,6 +123,7 @@ public class ThrowControllor : MonoBehaviour
         }
         clonedObject = Instantiate(ThrowingObject, _drawPrabola.ThrowPoint, ThrowingOrient.transform.rotation);
 
+        //設定Camera使其可以跟隨投擲出的物件
         birdCamera.GetComponent<CinemachineVirtualCamera>().Follow = clonedObject.transform;
         birdCamera.GetComponent<CinemachineVirtualCamera>().LookAt = clonedObject.transform;
         birdCamera.GetComponent<CinemachineVirtualCamera>().Priority = 1000;

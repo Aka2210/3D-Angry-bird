@@ -18,7 +18,7 @@ public class TNTCollider : BombCollider
 
     public void OnCollisionEnter(Collision collision)
     {
-        //�p�G�I�����O>=Ĳ�oTNT�һݪ��O�h�i��TNT�z���{���X
+        //如果受力過大則爆炸
         if (collision.relativeVelocity.magnitude >= triggerForce)
         {
             if (_islandCameraControllor != null)
