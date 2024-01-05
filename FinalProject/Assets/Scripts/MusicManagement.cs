@@ -130,7 +130,7 @@ public class MusicManagement : MonoBehaviour
 
     private void SwitchAudioForScene(string sceneName)
     {
-        Debug.Log("Switching audio for scene: " + sceneName);
+        //Debug.Log("Switching audio for scene: " + sceneName);
         // 根據場景名稱切換音樂
         audioSource = transform.GetComponent<AudioSource>();
         switch (sceneName)

@@ -53,8 +53,8 @@ public class SceneSwitcher : MonoBehaviour
         // 檢查 AudioSource 是否存在並播放音效
         if (buttonClickSound != null)
         {
-           buttonClickSound.volume = effectssound;
-           buttonClickSound.Play();
+            buttonClickSound.volume = PlayerPrefs.GetFloat("EffectsVolume", effectssound);
+            buttonClickSound.Play();
         }
         else
         {
@@ -197,7 +197,7 @@ public class SceneSwitcher : MonoBehaviour
             {
                 //Debug.Log("Find MusicControl");
                 //musicControl.transform.position = new Vector3(400f,400f,0f);
-                Debug.Log(transform.parent.name);
+                //Debug.Log(transform.parent.name);
                 Transform parentTransform = transform.parent;
                 Transform helpButtonTransform = parentTransform.Find("Help_Button");
                 if (helpButtonTransform != null)
@@ -270,7 +270,7 @@ public class SceneSwitcher : MonoBehaviour
         musicsound = value;
         MusicValueChanged();//更改儲存的背景音量大小
         PlayerPrefs.SetFloat("MusicVolume", value);
-        Debug.Log("OnMusicSliderValueChanged "+ musicsound);
+        //Debug.Log("OnMusicSliderValueChanged "+ musicsound);
         UpdateMusicVolume(value);
     }
 
@@ -289,7 +289,7 @@ public class SceneSwitcher : MonoBehaviour
         effectssound = value;
         EffectsValueChanged();//更改儲存的按鍵音量大小
         PlayerPrefs.SetFloat("EffectsVolume", effectssound);
-        Debug.Log("OnEffectsSliderValueChanged " + effectssound);
+        //Debug.Log("OnEffectsSliderValueChanged " + effectssound);
         UpdateEffectsVolume(value);
     }
 
